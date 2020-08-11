@@ -18,6 +18,7 @@ typedef struct		s_data
 	int				line_length;
 	int				endian;
 	char			**arr;
+	char			**map;
 }					t_data;
 
 
@@ -26,5 +27,7 @@ void	ft_putnbr(int n);
 void	ft_putstr(char *s);
 void    ft_parser(int argc, char **argv, t_data *img);
 int		ft_arrlen(char **arr);
+void	ft_w(t_data *img);
+void	ft_s(t_data *img);
 
 #endif

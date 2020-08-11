@@ -1,7 +1,7 @@
 NAME = cub3d
 
 SRCS = main.c get_next_line.c get_next_line_utils.c \
-		parser.c ft_putchars.c
+		parser.c ft_putchars.c ft_move.c
 
 SRCO = $(SRCS:.c=.o)
 

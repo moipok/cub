@@ -79,9 +79,45 @@ char	**ft_bigarr(char **arr, int n)
 	return (new);
 }
 
+char	**ft_bigmap(char **arr, int n)
+{
+	char **new;
+	int i;
+	int j;
+
+	new = malloc((sizeof(char*)) * (ft_arrlen(arr) * n + 1));
+	i = 0;
+	while (arr[i / n])
+	{
+		new[i] = malloc(sizeof(char) * (ft_strlenn(arr[i / n]) * n + 1));
+		i++;
+	}
+	i = 0;
+	while (arr[i / n])
+	{
+		j = 0;
+		while (arr[i / n][j / n])
+		{
+			if (arr[i / n][j / n] == 'N' || arr[i / n][j / n] == 'W' || arr[i / n][j / n] == 'E' || arr[i / n][j / n] == 'S')
+				new[i][j] = '0';
+			else
+				new[i][j] = arr[i / n][j / n];
+			j++;
+		}
+		new[i][j] = '\0';
+		i++;
+	}
+
+	//new[i][0] = '\0';
+	ft_putstr("lala\n");
+	//отчистить arr
+	return (new);
+}
+
 void 	ft_parser(int argc, char **argv, t_data *img)
 {
 	char **arr;
+	char **map;
 	int i;
 	int fd;
 	char *line;
@@ -95,11 +131,6 @@ void 	ft_parser(int argc, char **argv, t_data *img)
 		ft_lstadd_back(&list, ft_lstnew(line));
 	ft_lstadd_back(&list, ft_lstnew(line));
 	arr = ft_create_arr(list); //утечка
-	i = 0;
-	while(arr[i])
-	{
-		printf("%s\n", arr[i]);
-		i++;
-	}
 	img->arr = ft_bigarr(arr, 16); 
+	img->map = ft_bigmap(arr, 16); 
 }
