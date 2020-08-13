@@ -48,14 +48,16 @@ int		ft_arrlen(char **arr)
 	return (i);
 }
 
-char	**ft_bigarr(char **arr, int n)
+char	**ft_bigarr(char **arr, int n, t_data *img)
 {
 	char **new;
+	int flag;
 	int i;
 	int j;
 
 	new = malloc((sizeof(char*)) * (ft_arrlen(arr) * n + 1));
 	i = 0;
+	flag = 0;
 	while (arr[i / n])
 	{
 		new[i] = malloc(sizeof(char) * (ft_strlenn(arr[i / n]) * n + 1));
@@ -67,7 +69,17 @@ char	**ft_bigarr(char **arr, int n)
 		j = 0;
 		while (arr[i / n][j / n])
 		{
-			new[i][j] = arr[i / n][j / n];
+			if (flag == 0 && arr[i / n][j / n] == 'N')
+			{
+				new[i][j] = 'N';
+				flag = 1;
+				img->x = i;
+				img->y = j;
+			}
+			else if (flag == 1 && arr[i / n][j / n] == 'N')
+				new[i][j] = '0';
+			else
+				new[i][j] = arr[i / n][j / n];
 			j++;
 		}
 		new[i][j] = '\0';
@@ -131,6 +143,6 @@ void 	ft_parser(int argc, char **argv, t_data *img)
 		ft_lstadd_back(&list, ft_lstnew(line));
 	ft_lstadd_back(&list, ft_lstnew(line));
 	arr = ft_create_arr(list); //утечка
-	img->arr = ft_bigarr(arr, 16); 
+	img->arr = ft_bigarr(arr, 16, img); 
 	img->map = ft_bigmap(arr, 16); 
 }

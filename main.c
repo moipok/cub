@@ -25,14 +25,13 @@ void	ft_putwindow(t_data *img)
 		{
 			if (img->arr[i][j] == '1')
 				my_mlx_pixel_put(img, j+50, i+50, 0xFFFFFF);
-			else if (img->arr[i][j] == 'N')
-				my_mlx_pixel_put(img, j+50, i+50, 0xFF0FFF);
 			else if (img->arr[i][j] == '2')
 				my_mlx_pixel_put(img, j+50, i+50, 0xFFFF0F);
 			j++;
 		}
 		i++;
 	}
+	my_mlx_pixel_put(img, img->y + 50, img->x + 50, 0xFF0FFF);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 }
 
@@ -80,25 +79,25 @@ int             ft_close(int keycode, t_data *img)
 	}
 	else if (keycode == 13)
 	{
-		ft_w(img);
+		img = ft_w(img);
 		//ft_putred(img);
 		ft_putwindow(img);
 	}
 	else if (keycode == 1)
 	{
-		ft_s(img);
+		img = ft_s(img);
 		//ft_putred(img);
 		ft_putwindow(img);
 	}
 	else if (keycode == 2)
 	{
-		ft_d(img);
+		img = ft_d(img);
 		//ft_putred(img);
 		ft_putwindow(img);
 	}
 	else if (keycode == 0)
 	{
-		ft_a(img);
+		img = ft_a(img);
 		//ft_putred(img);
 		ft_putwindow(img);
 	}
