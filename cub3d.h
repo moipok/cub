@@ -7,6 +7,7 @@
 #include "libft/libft.h"
 #include <fcntl.h>
 #include <stdio.h>
+#include <math.h>
 
 typedef struct		s_data 
 {
@@ -21,6 +22,7 @@ typedef struct		s_data
 	char			**map;
 	int				x;
 	int				y;
+	double			mainangle;
 }					t_data;
 
 

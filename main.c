@@ -1,6 +1,7 @@
 
 #include "cub3d.h"
 
+
 void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
     char    *dst;
@@ -9,6 +10,29 @@ void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
     *(unsigned int*)dst = color;
 }
 
+t_data			*ft_first_angle(t_data *img)
+{
+	double c;  
+	double x;
+	double y;
+	int xx;
+	int yy;
+	img->mainangle = M_PI;
+
+	c = 1;
+	while (c)
+	{
+		x = img->x + c * cos(img->mainangle);
+    	y = img->y + c * sin(img->mainangle);
+		xx = (int)x;
+		yy = (int)y;
+		my_mlx_pixel_put(img, yy + 50, xx + 50, 0xFFFF0F);
+    	if (img->map[xx][yy] == '1') 
+			break;
+		c = c + 0.1;
+	}
+	return (img);
+}
 
 void	ft_putwindow(t_data *img)
 {
@@ -31,23 +55,11 @@ void	ft_putwindow(t_data *img)
 		}
 		i++;
 	}
+	img = ft_first_angle(img);
 	my_mlx_pixel_put(img, img->y + 50, img->x + 50, 0xFF0FFF);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 }
 
-
-
-int		render_next_frame(t_data *img)
-{
-	if (1)
-	{
-	my_mlx_pixel_put(img, 50, 50, 0x000AAA);
-	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
-	// img->arr = ft_w(img);
-	// ft_putwindow(img);
-	}
-	return (0);
-}
 
 void			ft_putred(t_data *img)
 {
