@@ -78,7 +78,7 @@ int             ft_close(int keycode, t_data *img)
 		mlx_destroy_window(img->mlx, img->win);
 		exit(1);
 	}
-	if (keycode == 13)
+	else if (keycode == 13)
 	{
 		ft_w(img);
 		//ft_putred(img);
@@ -87,6 +87,18 @@ int             ft_close(int keycode, t_data *img)
 	else if (keycode == 1)
 	{
 		ft_s(img);
+		//ft_putred(img);
+		ft_putwindow(img);
+	}
+	else if (keycode == 2)
+	{
+		ft_d(img);
+		//ft_putred(img);
+		ft_putwindow(img);
+	}
+	else if (keycode == 0)
+	{
+		ft_a(img);
 		//ft_putred(img);
 		ft_putwindow(img);
 	}

@@ -29,5 +29,7 @@ void    ft_parser(int argc, char **argv, t_data *img);
 int		ft_arrlen(char **arr);
 void	ft_w(t_data *img);
 void	ft_s(t_data *img);
+void	ft_a(t_data *img);
+void	ft_d(t_data *img);
 
 #endif
