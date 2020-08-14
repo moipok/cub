@@ -17,19 +17,27 @@ t_data			*ft_first_angle(t_data *img)
 	double y;
 	int xx;
 	int yy;
-	img->mainangle = M_PI;
+	double *arrangle;
+	double angle1;
+	double angle2;
 
-	c = 1;
-	while (c)
+	angle1 = img->mainangle - M_PI_4;
+	angle2 = img->mainangle + M_PI_4;
+	while (angle1 < angle2)
 	{
-		x = img->x + c * cos(img->mainangle);
-    	y = img->y + c * sin(img->mainangle);
-		xx = (int)x;
-		yy = (int)y;
-		my_mlx_pixel_put(img, yy + 50, xx + 50, 0xFFFF0F);
-    	if (img->map[xx][yy] == '1') 
-			break;
-		c = c + 0.1;
+		c = 1;
+		while (c)
+		{
+			x = img->x + c * cos(angle1);
+			y = img->y + c * sin(angle1);
+			xx = (int)x;
+			yy = (int)y;
+			my_mlx_pixel_put(img, yy + 50, xx + 50, 0xFFFF0F);
+		 	if (img->map[xx][yy] == '1') 
+				break;
+			c = c + 0.1;
+		}
+		angle1 += 0.01;
 	}
 	return (img);
 }
@@ -89,13 +97,13 @@ int             ft_close(int keycode, t_data *img)
 		mlx_destroy_window(img->mlx, img->win);
 		exit(1);
 	}
-	else if (keycode == 13)
+	else if (keycode == 13 || keycode == 126)
 	{
 		img = ft_w(img);
 		//ft_putred(img);
 		ft_putwindow(img);
 	}
-	else if (keycode == 1)
+	else if (keycode == 1 || keycode == 125)
 	{
 		img = ft_s(img);
 		//ft_putred(img);
@@ -110,6 +118,18 @@ int             ft_close(int keycode, t_data *img)
 	else if (keycode == 0)
 	{
 		img = ft_a(img);
+		//ft_putred(img);
+		ft_putwindow(img);
+	}
+	else if (keycode == 123)
+	{
+		img->mainangle += 0.03;
+		//ft_putred(img);
+		ft_putwindow(img);
+	}
+	else if (keycode == 124)
+	{
+		img->mainangle -= 0.03;
 		//ft_putred(img);
 		ft_putwindow(img);
 	}
@@ -133,6 +153,7 @@ int		main(int argc, char **argv)
 	img.win = mlx_new_window(img.mlx, 640, 480, "test");
 	img.img = mlx_new_image(img.mlx, 640, 480);
     img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	img.mainangle = M_PI;
 	ft_putwindow(&img);
 	mlx_hook(img.win, 2, 1L<<0, ft_close, &img);
 	mlx_loop(img.mlx);
