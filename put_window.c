@@ -68,42 +68,24 @@ void	ft_putwindow(t_data *img)
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 }
 
-void ft_putline(t_data *img, int i, double c)
+void ft_putline(t_data *img, int i, double c, double angle)
 {
 	double j;
 	int jj;
 	int a;
 
-	j = (4 / c) * img->r2;
+	j = img->r2 * 8 / (c * cos(img->mainangle - angle));
 	if (i >= img->r1)
 		return ;
-	if (j > 480)
-		j = 450;
+	if (j > img->r2 / 2)
+		j = img->r2 / 2 - 1;
 	jj = (int)j;
 	printf("%d, %f, %d\n", i, c, jj);
 	while (jj)
 	{
-		my_mlx_pixel_put(img, i + 1, (img->r2 / 2) + jj - 2, 0xFFFFFF);
+		my_mlx_pixel_put(img, img->r1 - i, (img->r2 / 2) + jj - 2, 0xFFFFFF);
+		my_mlx_pixel_put(img, img->r1 - i, (img->r2 / 2) - jj + 2, 0xFFFFFF);
 		jj = jj - 1;
-	}
-	a = 0;
-	jj = (int)j;
-	printf("%d, %f, %d\n", i, c, jj);
-	while (a < jj)
-	{
-		my_mlx_pixel_put(img, i + 1, (img->r2 / 2) - a + 2, 0xFFFFFF);
-		a++;
-	}
-	a = 100;
-	while (a)
-	{
-		jj = 50;
-		while (jj)
-		{
-			my_mlx_pixel_put(img, a + 10, jj + 10, 0xFFF0FF);
-			jj--;
-		}
-		a--;
 	}
 }
 
@@ -133,15 +115,47 @@ t_data *ft_putcol(t_data *img)
 			yy = (int)y;
 		 	if (img->map[xx][yy] == '1') 
 			{
-				ft_putline(img, i, c);
-				i++;
+				c = c - 1;
+				while (c)
+				{
+					x = img->x + c * cos(angle1);
+					y = img->y + c * sin(angle1);
+					xx = (int)x;
+					yy = (int)y;
+					if (img->map[xx][yy] == '1') 
+					{
+						ft_putline(img, i, c, angle1);
+						i++;
+						break;
+					}
+					c = c + 0.01;
+				}
 				break;
 			}
-			c = c + 0.5;
+			c = c + 1;
 		}
 		angle1 += M_PI_2 / img->r1;
 	}
 	return (img);
+}
+
+void	ft_puttop(t_data *img)
+{
+	int i;
+	int j;
+
+	i = 1;
+	while (i < img->r1)
+	{
+		j = img->r2 / 2;
+		while (j)
+		{
+			my_mlx_pixel_put(img, i, (img->r2 / 2) - j + 1, 0x00BFFF);
+			my_mlx_pixel_put(img, i, (img->r2 / 2) + j - 1, 0x6B8E23);
+			j--;
+		}
+		i++;
+	}
 }
 
 void	ft_putwindow_3d(t_data *img)
@@ -151,6 +165,7 @@ void	ft_putwindow_3d(t_data *img)
 
 	img->img = mlx_new_image(img->mlx, img->r1, img->r2);
     img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+	ft_puttop(img);
 	img = ft_putcol(img);
 	my_mlx_pixel_put(img, img->y + 50, img->x + 50, 0xFF0FFF);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);

@@ -17,7 +17,6 @@ t_data	*ft_w(t_data *img)
 		img->y = yy;
 	}
 	return (img);
-	printf("(%d, %d,)\n", img->x, img->y);
 }
 
 
@@ -38,7 +37,6 @@ t_data	*ft_s(t_data *img)
 		img->y = yy;
 	}
 	return (img);
-	printf("(%d, %d,)\n", img->x, img->y);
 }
 
 
@@ -59,7 +57,6 @@ t_data	*ft_d(t_data *img)
 		img->y = yy;
 	}
 	return (img);
-	printf("(%d, %d,)\n", img->x, img->y);
 }
 
 t_data	*ft_a(t_data *img)
@@ -79,5 +76,4 @@ t_data	*ft_a(t_data *img)
 		img->y = yy;
 	}
 	return (img);
-	printf("(%d, %d,)\n", img->x, img->y);
 }

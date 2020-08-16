@@ -17,13 +17,12 @@ int             ft_docase(int keycode, t_data *img)
 	else if (keycode == 0)
 		img = ft_a(img);
 	else if (keycode == 123)
-		img->mainangle += 0.04;
+		img->mainangle += 0.08;
 	else if (keycode == 124)
-		img->mainangle -= 0.04;
+		img->mainangle -= 0.08;
 	else
 		printf("%d\n", keycode);
 	ft_putwindow_3d(img);
-	//ft_putwindow_3d(img);
 	return (0);
 }
 
