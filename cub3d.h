@@ -23,6 +23,8 @@ typedef struct		s_data
 	int				x;
 	int				y;
 	double			mainangle;
+	int				r1;
+	int				r2;
 }					t_data;
 
 
@@ -35,5 +37,9 @@ t_data	*ft_w(t_data *img);
 t_data	*ft_s(t_data *img);
 t_data	*ft_a(t_data *img);
 t_data	*ft_d(t_data *img);
+void            my_mlx_pixel_put(t_data *data, int x, int y, int color);
+t_data			*ft_first_angle(t_data *img);
+void	ft_putwindow(t_data *img);
+void	ft_putwindow_3d(t_data *img);
 
 #endif

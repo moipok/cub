@@ -145,4 +145,6 @@ void 	ft_parser(int argc, char **argv, t_data *img)
 	arr = ft_create_arr(list); //утечка
 	img->arr = ft_bigarr(arr, 16, img); 
 	img->map = ft_bigmap(arr, 16); 
+	img->r1 = 1080;
+	img->r2 = 720;
 }
