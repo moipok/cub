@@ -20,8 +20,8 @@ typedef struct		s_data
 	int				endian;
 	char			**arr;
 	char			**map;
-	int				x;
-	int				y;
+	double				x;
+	double			y;
 	double			mainangle;
 	int				r1;
 	int				r2;

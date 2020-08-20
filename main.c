@@ -22,6 +22,7 @@ int             ft_docase(int keycode, t_data *img)
 		img->mainangle -= 0.08;
 	else
 		printf("%d\n", keycode);
+	printf("x = %f\n, y = %f\n", img->x, img->y);
 	ft_putwindow_3d(img);
 	return (0);
 }
