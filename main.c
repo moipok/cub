@@ -27,6 +27,14 @@ int             ft_docase(int keycode, t_data *img)
 	return (0);
 }
 
+void	ft_create_text(t_data *img)
+{
+	printf("1\n");
+	img->ntext = (t_xpm*)malloc(1);
+	printf("2\n");
+	mlx_xpm_file_to_image(&(img)->ntext->mlx, "./text/WALL77.xpm", &(img)->ntext->width, &(img)->ntext->height);
+	printf("3\n");
+}
 
 int		main(int argc, char **argv)
 {
@@ -43,6 +51,9 @@ int		main(int argc, char **argv)
 	img.img = mlx_new_image(img.mlx, img.r1, img.r2);
     img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	img.mainangle = M_PI;
+	// text
+	ft_create_text(&img);
+	// text
 	ft_putwindow_3d(&img);
 	mlx_hook(img.win, 2, 1L<<0, ft_docase, &img);
 	mlx_loop(img.mlx);
