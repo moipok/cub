@@ -9,6 +9,7 @@ all: $(SRCO)
 	cd ./libft && make bonus && cd ..
 	gcc -c $(SRCS)
 	gcc $(SRCO) libmlx.dylib -framework OpenGL -framework Appkit libft/libft.a
+	/bin/rm -f $(SRCO)
 
 clean:
 	/bin/rm -f $(SRCO)

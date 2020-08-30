@@ -34,7 +34,6 @@ char	**ft_create_arr(t_list *list)
 	}
 	i = 0;
 	ft_lstfree(&tmp);
-
 	return (arr);
 }
 
@@ -48,79 +47,58 @@ int		ft_arrlen(char **arr)
 	return (i);
 }
 
-char	**ft_bigarr(char **arr, int n, t_data *img)
+double	ft_angle(char c)
+{
+	if (c == 'N')
+		return (M_PI);
+	else if (c == 'E')
+		return (M_PI_2);
+	else if (c == 'W')
+		return (-M_PI_2);
+	else
+		return (0);
+}
+
+char	**ft_bigarr(char **arr, t_data *img)
 {
 	char **new;
 	int flag;
 	int i;
 	int j;
 
-	new = malloc((sizeof(char*)) * (ft_arrlen(arr) * n + 1));
+	new = ft_calloc((sizeof(char*)), (ft_arrlen(arr) + 1));
 	i = 0;
 	flag = 0;
-	while (arr[i / n])
+	while (arr[i])
 	{
-		new[i] = malloc(sizeof(char) * (ft_strlenn(arr[i / n]) * n + 1));
+		new[i] = ft_calloc(sizeof(char), (ft_strlenn(arr[i]) + 1));
 		i++;
 	}
 	i = 0;
-	while (arr[i / n])
+	while (arr[i])
 	{
 		j = 0;
-		while (arr[i / n][j / n])
+		while (arr[i][j])
 		{
-			if (flag == 0 && arr[i / n][j / n] == 'N')
+			if (flag == 0 && (arr[i][j] == 'N' || arr[i][j] == 'E' ||arr[i][j] == 'W' || arr[i][j] == 'S'))
 			{
-				new[i][j] = 'N';
+				new[i][j] = '0';
 				flag = 1;
-				img->x = i;
-				img->y = j;
+				img->x = i + 0.5;
+				img->y = j + 0.5;
+				img->mainangle = ft_angle(arr[i][j]);
 			}
-			else if (flag == 1 && arr[i / n][j / n] == 'N')
+			else if (flag == 1 && (arr[i][j] == 'N' || arr[i][j] == 'E' ||arr[i][j] == 'W' || arr[i][j] == 'S'))
+			{
 				new[i][j] = '0';
+				return (0);
+			}
 			else
-				new[i][j] = arr[i / n][j / n];
+				new[i][j] = arr[i][j];
 			j++;
 		}
-		new[i][j] = '\0';
 		i++;
 	}
-	//new[i][0] = '\0';
-	ft_putstr("lala\n");
-	//отчистить arr
-	return (new);
-}
-
-char	**ft_bigmap(char **arr, int n)
-{
-	char **new;
-	int i;
-	int j;
-
-	new = malloc((sizeof(char*)) * (ft_arrlen(arr) * n + 1));
-	i = 0;
-	while (arr[i / n])
-	{
-		new[i] = malloc(sizeof(char) * (ft_strlenn(arr[i / n]) * n + 1));
-		i++;
-	}
-	i = 0;
-	while (arr[i / n])
-	{
-		j = 0;
-		while (arr[i / n][j / n])
-		{
-			if (arr[i / n][j / n] == 'N' || arr[i / n][j / n] == 'W' || arr[i / n][j / n] == 'E' || arr[i / n][j / n] == 'S')
-				new[i][j] = '0';
-			else
-				new[i][j] = arr[i / n][j / n];
-			j++;
-		}
-		new[i][j] = '\0';
-		i++;
-	}
-
-	//new[i][0] = '\0';
 	ft_putstr("lala\n");
 	//отчистить arr
 	return (new);
@@ -142,9 +120,9 @@ void 	ft_parser(int argc, char **argv, t_data *img)
 	while (get_next_line(fd, &line))
 		ft_lstadd_back(&list, ft_lstnew(line));
 	ft_lstadd_back(&list, ft_lstnew(line));
-	arr = ft_create_arr(list); //утечка
-	img->arr = ft_bigarr(arr, 1, img); 
-	img->map = ft_bigmap(arr, 1); 
+	arr = ft_create_arr(list);
+	img->arr = ft_bigarr(arr, img); 
+	img->map = img->arr; 
 	img->r1 = 1080;
 	img->r2 = 720;
 }
