@@ -57,6 +57,12 @@ void	inittexture(t_data *data)
 	
 	data->spritetext->mlx = mlx_xpm_file_to_image(data->mlx, data->sprite, &data->spritetext->width, &data->spritetext->height);
 	data->spritetext->addr = mlx_get_data_addr(data->spritetext->mlx, &data->spritetext->bits_per_pixel, &data->spritetext->line_length, &data->spritetext->endian);
+
+	data->notext->name = 'n';
+	data->sotext->name = 's';
+	data->wetext->name = 'w';
+	data->eatext->name = 'e';
+	data->spritetext->name = 's';
 }
 
 int		main(int argc, char **argv)

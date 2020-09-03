@@ -196,6 +196,5 @@ void 	ft_parser(int argc, char **argv, t_data *img)
 	}
 	printf("wow\n");
 	ft_lstadd_back(&list, ft_lstnew(line));
-	arr = ft_create_arr(list); 
-	img->map = ft_bigarr(arr, img); 
+	img->map = ft_bigarr(ft_create_arr(list), img); 
 }

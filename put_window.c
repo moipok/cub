@@ -21,13 +21,13 @@ int            get_collor(t_xpm *data, int x, int y)
 }
 
 
-void ft_putline(t_data *img, int i, double c, double angle)
+void ft_putline(t_data *img, int i, double pixelhiegt, t_xpm *whatwall, double partofwall)
 {
 	double j;
 	int jj;
 	int a;
 
-	j = img->r2  / (c * cos(img->mainangle - angle));
+	j = pixelhiegt;
 	if (i > img->r1)
 		return ;
 	if (j > img->r2 / 2)
@@ -36,10 +36,40 @@ void ft_putline(t_data *img, int i, double c, double angle)
 	// printf("%d, %f, %d\n", i, c, jj);
 	while (jj)
 	{
-		my_mlx_pixel_put(img, img->r1 - i, (img->r2 / 2) + jj - 1, 0xFFFFFF);
-		my_mlx_pixel_put(img, img->r1 - i, (img->r2 / 2) - jj + 1, 0xFFFFFF);
+		my_mlx_pixel_put(img, img->r1 - i, (img->r2 / 2) + jj - 1, get_collor(whatwall, i%64, jj%64));
+		my_mlx_pixel_put(img, img->r1 - i, (img->r2 / 2) - jj + 1, get_collor(whatwall, i%64, jj%64));
 		jj = jj - 1;
 	}
+}
+
+t_xpm 	*ft_findwall(t_data *img, double c, double x, double y, double angle1)
+{
+	double xx;
+	double yy;
+	
+	c = c - 0.01;
+	xx = img->x + c * cos(angle1);
+	yy = img->y + c * sin(angle1);
+	if ((int)x - (int)xx == -1)
+		return (img->notext);
+	else if ((int)x - (int)xx == 1)
+		return (img->sotext);
+	else if ((int)y - (int)yy == 1)
+		return (img->wetext);
+	else
+		return (img->eatext);
+}
+
+double ft_findpartofwall(char wall, double x, double y)
+{
+	if (wall == 'n')
+		return (x - (int)x);
+	else if (wall == 's')
+		return (1 - x + (int)x);
+	else if (wall == 'w')
+		return (y - (int)y);
+	else
+		return (1 - y + (int)y);
 }
 
 t_data *ft_putcol(t_data *img)
@@ -53,6 +83,9 @@ t_data *ft_putcol(t_data *img)
 	double angle1;
 	double angle2;
 	int i;
+	double pixelhiegt;
+	double partofwall;
+	t_xpm	*wall;
 
 	angle1 = img->mainangle - M_PI / 6;
 	angle2 = img->mainangle + M_PI / 6;
@@ -77,7 +110,10 @@ t_data *ft_putcol(t_data *img)
 					yy = (int)y;
 					if (img->map[xx][yy] == '1') 
 					{
-						ft_putline(img, i, c, angle1);
+						pixelhiegt = img->r2  / (c * cos(img->mainangle - angle1));
+						wall = ft_findwall(img, c, x, y, angle1);
+						partofwall = ft_findpartofwall(wall->name, x, y);
+						ft_putline(img, i, pixelhiegt, wall, partofwall);
 						i++;
 						break;
 					}

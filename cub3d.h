@@ -18,6 +18,7 @@ typedef struct		s_xpm
     int				endian;
 	int				height;
 	int				width;
+	char			name;
 }					t_xpm;
 
 
