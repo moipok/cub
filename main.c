@@ -22,7 +22,6 @@ int             ft_docase(int keycode, t_data *img)
 		img->mainangle -= 0.08;
 	else
 		printf("%d\n", keycode);
-	printf("x = %f\n, y = %f\n", img->x, img->y);
 	ft_putwindow_3d(img);
 	return (0);
 }
@@ -44,12 +43,13 @@ int		main(int argc, char **argv)
 
 	img.mlx = NULL;
 	img.win = NULL;
+	img.fulldata = 0;
 	ft_parser(argc, argv, &img);
 	i = 0;
 	img.mlx = mlx_init();
 	img.win = mlx_new_window(img.mlx, img.r1, img.r2, "test");
-	img.img = mlx_new_image(img.mlx, img.r1, img.r2);
-    img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	// img.img = mlx_new_image(img.mlx, img.r1, img.r2);
+    // img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	// text
 	// ft_create_text(&img);
 	// text

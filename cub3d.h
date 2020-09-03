@@ -20,6 +20,7 @@ typedef struct		s_xpm
 	int				*width;
 }					t_xpm;
 
+
 typedef struct		s_data 
 {
     void			*mlx;
@@ -29,6 +30,7 @@ typedef struct		s_data
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
+
 	char			**arr;
 	char			**map;
 	double			x;
@@ -36,7 +38,16 @@ typedef struct		s_data
 	double			mainangle;
 	int				r1;
 	int				r2;
-	t_xpm			*ntext;
+	int				fulldata;
+	char			*sprite;
+	char			*no;
+	char			*so;
+	char			*we;
+	char			*ea;
+	int				cellar;
+	int				floor;
+	t_xpm			*notext;
+
 }					t_data;
 
 

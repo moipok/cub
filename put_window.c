@@ -167,6 +167,5 @@ void	ft_putwindow_3d(t_data *img)
     img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 	ft_puttop(img);
 	img = ft_putcol(img);
-	my_mlx_pixel_put(img, img->y + 50, img->x + 50, 0xFF0FFF);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 }

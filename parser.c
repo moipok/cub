@@ -104,6 +104,69 @@ char	**ft_bigarr(char **arr, t_data *img)
 	return (new);
 }
 
+int ft_strcollor(char **str)
+{
+	return (0);
+}
+
+void	setdata(char **str, t_data *img)
+{
+	if (str[0] == NULL)
+		return ;
+	else if (str[0][0] == 'R')
+	{
+		img->r1 = ft_atoi(str[1]);
+		img->r2 = ft_atoi(str[2]);
+		img->fulldata++;
+	}
+	else if (str[0][0] == 'N')
+	{
+		img->fulldata++;
+		if (str[0][1] == 'O')
+			img->no = str[1];
+		else 
+			exit(1); // error
+	}
+	else if (str[0][0] == 'S')
+	{
+		img->fulldata++;
+		if (ft_strlen(str[0]) == 1)
+			img->sprite = str[1];
+		else if (str[0][1] == 'O')
+			img->no = str[1];
+		else 
+			exit(1); // error
+	}
+	else if (str[0][0] == 'W')
+	{
+		img->fulldata++;
+		if (str[0][1] == 'E')
+			img->we = str[1];
+		else 
+			exit(1); // error
+	}
+	else if (str[0][0] == 'E')
+	{
+		img->fulldata++;
+		if (str[0][1] == 'A')
+			img->ea = str[1];
+		else 
+			exit(1); // error
+	}
+	else if (str[0][0] == 'F')
+	{
+		img->floor = ft_strcollor(str);
+		img->fulldata++;
+	}
+	else if (str[0][0] == 'C')
+	{
+		img->cellar = ft_strcollor(str);
+		img->fulldata++;
+	}
+	else
+		;
+}
+
 void 	ft_parser(int argc, char **argv, t_data *img)
 {
 	char **arr;
@@ -112,17 +175,27 @@ void 	ft_parser(int argc, char **argv, t_data *img)
 	int fd;
 	char *line;
 	t_list *list;
+	char **tmp;
 
 	
 	line = NULL;
 	list = NULL;
 	fd = open(argv[1], O_RDONLY);
 	while (get_next_line(fd, &line))
-		ft_lstadd_back(&list, ft_lstnew(line));
+	{
+		if (img->fulldata == 8)
+			ft_lstadd_back(&list, ft_lstnew(line));
+		else if (line[0] == NULL)
+			;
+		else
+		{
+			tmp = ft_split(line, ' ');
+			setdata(tmp, img);
+			printf("%s\n", tmp[0]);
+		}
+	}
+	printf("wow\n");
 	ft_lstadd_back(&list, ft_lstnew(line));
-	arr = ft_create_arr(list);
-	img->arr = ft_bigarr(arr, img); 
-	img->map = img->arr; 
-	img->r1 = 1080;
-	img->r2 = 720;
+	arr = ft_create_arr(list); 
+	img->map = ft_bigarr(arr, img); 
 }

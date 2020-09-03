@@ -17,7 +17,7 @@ size_t		ft_strlenn(const char *s)
 	size_t	i;
 
 	i = 0;
-	while (s[i] != 0)
+	while (s && s[i] != 0)
 		i++;
 	return (i);
 }
