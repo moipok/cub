@@ -133,7 +133,7 @@ void	setdata(char **str, t_data *img)
 		if (ft_strlen(str[0]) == 1)
 			img->sprite = str[1];
 		else if (str[0][1] == 'O')
-			img->no = str[1];
+			img->so = str[1];
 		else 
 			exit(1); // error
 	}

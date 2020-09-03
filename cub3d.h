@@ -16,8 +16,8 @@ typedef struct		s_xpm
     int				bits_per_pixel;
     int				line_length;
     int				endian;
-	int				*height;
-	int				*width;
+	int				height;
+	int				width;
 }					t_xpm;
 
 
@@ -47,7 +47,10 @@ typedef struct		s_data
 	int				cellar;
 	int				floor;
 	t_xpm			*notext;
-
+	t_xpm			*sotext;
+	t_xpm			*wetext;
+	t_xpm			*eatext;
+	t_xpm			*spritetext;
 }					t_data;
 
 
@@ -64,5 +67,8 @@ void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 t_data		*ft_first_angle(t_data *img);
 void		ft_putwindow(t_data *img);
 void		ft_putwindow_3d(t_data *img);
+void 		put_texture(t_data *data);
+int			get_collor(t_xpm *data, int x, int y);
+void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

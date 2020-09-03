@@ -1,10 +1,9 @@
 R      1080         720
-NO ./text/WALL77.xpm
-SO ./text/WALL77.xpm
-
-WE ./text/WALL77.xpm
-EA ./text/WALL77.xpm
-    S      ./text/WALL77.xpm
+NO ./text/greystone.xpm
+SO ./text/bluestone.xpm
+WE ./text/redbrick.xpm
+EA ./text/purplestone.xpm
+    S      ./text/itachi.xpm
 F 220,100,0
 C 225  ,  30  ,  0
 
