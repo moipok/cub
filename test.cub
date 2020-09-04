@@ -1,14 +1,12 @@
-R      1080         720
+NO ./text/purplestone.xpm
+
+R      360         240
 WE ./text/greystone.xpm
 SO ./text/bluestone.xpm
 EA ./text/redbrick.xpm
-NO ./text/purplestone.xpm
+ C 139      , 69, 19
 S ./text/purplestone.xpm
 F 75, 0, 130
-C 139, 69, 19
-
-
-
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000002000001

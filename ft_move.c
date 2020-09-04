@@ -5,8 +5,8 @@ t_data	*ft_w(t_data *img)
 	double x;
 	double y;
 
-	x = img->x + 0.15 * cos(img->mainangle);
-	y = img->y + 0.15 * sin(img->mainangle);
+	x = img->x + 0.2 * cos(img->mainangle);
+	y = img->y + 0.2 * sin(img->mainangle);
 	if (img->map[(int)x][(int)y] != '1') 
 	{
 		img->x = x;
@@ -21,8 +21,8 @@ t_data	*ft_s(t_data *img)
 	double x;
 	double y;
 
-	x = img->x + 0.15 * cos(img->mainangle - M_PI);
-	y = img->y + 0.15 * sin(img->mainangle - M_PI);
+	x = img->x + 0.13 * cos(img->mainangle - M_PI);
+	y = img->y + 0.13 * sin(img->mainangle - M_PI);
 	if (img->map[(int)x][(int)y] != '1') 
 	{
 		img->x = x;
@@ -37,8 +37,8 @@ t_data	*ft_d(t_data *img)
 	double x;
 	double y;
 
-	x = img->x + 0.15 * cos(img->mainangle - M_PI_2);
-	y = img->y + 0.15 * sin(img->mainangle - M_PI_2);
+	x = img->x + 0.13 * cos(img->mainangle - M_PI_2);
+	y = img->y + 0.13 * sin(img->mainangle - M_PI_2);
 	if (img->map[(int)x][(int)y] != '1') 
 	{
 		img->x = x;
@@ -52,8 +52,8 @@ t_data	*ft_a(t_data *img)
 	double x;
 	double y;
 
-	x = img->x + 0.15 * cos(img->mainangle + M_PI_2);
-	y = img->y + 0.15 * sin(img->mainangle + M_PI_2);
+	x = img->x + 0.13 * cos(img->mainangle + M_PI_2);
+	y = img->y + 0.13 * sin(img->mainangle + M_PI_2);
 	if (img->map[(int)x][(int)y] != '1') 
 	{
 		img->x = x;

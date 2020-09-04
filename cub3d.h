@@ -21,6 +21,19 @@ typedef struct		s_xpm
 	char			name;
 }					t_xpm;
 
+typedef struct		s_flags
+{
+    int				noflag;
+	int				soflag;
+	int				weflag;
+	int				eaflag;
+	int				spriteflag;
+	int				r1flag;
+	int				r2flag;
+	int				cellarflag;
+	int				floorflag;
+	int				allflag;
+}					t_flags;
 
 typedef struct		s_data 
 {
@@ -72,5 +85,8 @@ void 		put_texture(t_data *data);
 int			get_collor(t_xpm *data, int x, int y);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int 		ft_setfloorcollor(char **str);
-
+void		setdata(char **str, t_data *img, t_flags *flag);
+int 		fl_sumflag(t_flags *flag);
+void		ft_cleanflag(t_flags *flag);
+void freemass(char **str);
 #endif

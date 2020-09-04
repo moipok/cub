@@ -53,8 +53,6 @@ void ft_putline(t_data *img, int i, double pixelhiegt, t_xpm *whatwall, double p
 	while (jj < end)
 	{
 		my_mlx_pixel_put(img, img->r1 - i, jj, get_collor(whatwall, (partofwall * whatwall->width), (whatwall->height * ft_foundpixel(jj, end, pixelhiegt, img->r2))));
-		//my_mlx_pixel_put(img, img->r1 - i, (img->r2 / 2) + jj - 1, get_collor(whatwall,  (partofwall * whatwall->width), (whatwall->height * (pixelhiegt - 2 * jj) / (pixelhiegt * 2))));
-		//my_mlx_pixel_put(img, img->r1 - i, (img->r2 / 2) - jj, get_collor(whatwall, (partofwall * whatwall->width), (whatwall->height * (pixelhiegt - 2 * jj) / (pixelhiegt * 2))));
 		jj++;
 	}
 }
