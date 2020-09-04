@@ -156,8 +156,8 @@ void	ft_puttop(t_data *img)
 		j = img->r2 / 2;
 		while (j)
 		{
-			my_mlx_pixel_put(img, i, (img->r2 / 2) - j + 1, 0x00BFFF);
-			my_mlx_pixel_put(img, i, (img->r2 / 2) + j - 1, 0x6B8E23);
+			my_mlx_pixel_put(img, i, (img->r2 / 2) - j + 1, img->floor );
+			my_mlx_pixel_put(img, i, (img->r2 / 2) + j - 1, img->cellar );
 			j--;
 		}
 		i++;

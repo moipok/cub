@@ -2,10 +2,10 @@ R      1080         720
 WE ./text/greystone.xpm
 SO ./text/bluestone.xpm
 EA ./text/redbrick.xpm
-NO ./text/putin.xpm
+NO ./text/purplestone.xpm
 S ./text/purplestone.xpm
-F 220,100,0
-C 225  ,  30  ,  0
+F 75, 0, 130
+C 139, 69, 19
 
 
 

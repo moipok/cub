@@ -71,5 +71,6 @@ void		ft_putwindow_3d(t_data *img);
 void 		put_texture(t_data *data);
 int			get_collor(t_xpm *data, int x, int y);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int 		ft_setfloorcollor(char **str);
 
 #endif

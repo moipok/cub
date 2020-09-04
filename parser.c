@@ -104,10 +104,6 @@ char	**ft_bigarr(char **arr, t_data *img)
 	return (new);
 }
 
-int ft_strcollor(char **str)
-{
-	return (0);
-}
 
 void	setdata(char **str, t_data *img)
 {
@@ -155,12 +151,12 @@ void	setdata(char **str, t_data *img)
 	}
 	else if (str[0][0] == 'F')
 	{
-		img->floor = ft_strcollor(str);
+		img->floor = ft_setfloorcollor(str);
 		img->fulldata++;
 	}
 	else if (str[0][0] == 'C')
 	{
-		img->cellar = ft_strcollor(str);
+		img->cellar = ft_setfloorcollor(str);
 		img->fulldata++;
 	}
 	else
