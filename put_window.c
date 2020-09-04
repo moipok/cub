@@ -20,25 +20,42 @@ int            get_collor(t_xpm *data, int x, int y)
 	return (collor);
 }
 
+double	ft_foundpixel(int jj,int end, double pixelhiegt, int r2)
+{
+	if (pixelhiegt > r2)
+		return(((pixelhiegt - r2)/2 + jj)/pixelhiegt);
+	else
+	{
+		return ((jj - (r2 - pixelhiegt)/2)/pixelhiegt);
+	}
+}
+
 
 void ft_putline(t_data *img, int i, double pixelhiegt, t_xpm *whatwall, double partofwall)
 {
-	double j;
+	int tmp;
 	int jj;
-	int a;
+	int end;
 
-	j = pixelhiegt;
 	if (i > img->r1)
 		return ;
-	if (j > img->r2 / 2)
-		j = img->r2 / 2 - 1;
-	jj = (int)j;
-	// printf("%d, %f, %d\n", i, c, jj);
-	while (jj)
+	if ((int)pixelhiegt > img->r2)
 	{
-		my_mlx_pixel_put(img, img->r1 - i, (img->r2 / 2) + jj - 1, get_collor(whatwall, i%64, jj%64));
-		my_mlx_pixel_put(img, img->r1 - i, (img->r2 / 2) - jj + 1, get_collor(whatwall, i%64, jj%64));
-		jj = jj - 1;
+		jj = 0;
+		end = img->r2;
+	}
+	else
+	{	
+		jj = (img->r2 - pixelhiegt)/2;
+		end = jj + pixelhiegt;
+	}
+	tmp = jj;
+	while (jj < end)
+	{
+		my_mlx_pixel_put(img, img->r1 - i, jj, get_collor(whatwall, (partofwall * whatwall->width), (whatwall->height * ft_foundpixel(jj, end, pixelhiegt, img->r2))));
+		//my_mlx_pixel_put(img, img->r1 - i, (img->r2 / 2) + jj - 1, get_collor(whatwall,  (partofwall * whatwall->width), (whatwall->height * (pixelhiegt - 2 * jj) / (pixelhiegt * 2))));
+		//my_mlx_pixel_put(img, img->r1 - i, (img->r2 / 2) - jj, get_collor(whatwall, (partofwall * whatwall->width), (whatwall->height * (pixelhiegt - 2 * jj) / (pixelhiegt * 2))));
+		jj++;
 	}
 }
 
@@ -47,7 +64,7 @@ t_xpm 	*ft_findwall(t_data *img, double c, double x, double y, double angle1)
 	double xx;
 	double yy;
 	
-	c = c - 0.01;
+	c = c - 0.001;
 	xx = img->x + c * cos(angle1);
 	yy = img->y + c * sin(angle1);
 	if ((int)x - (int)xx == -1)
@@ -62,14 +79,14 @@ t_xpm 	*ft_findwall(t_data *img, double c, double x, double y, double angle1)
 
 double ft_findpartofwall(char wall, double x, double y)
 {
-	if (wall == 'n')
+	if (wall == 'w')
 		return (x - (int)x);
-	else if (wall == 's')
+	else if (wall == 'e')
 		return (1 - x + (int)x);
-	else if (wall == 'w')
+	else if (wall == 'n')
 		return (y - (int)y);
 	else
-		return (1 - y + (int)y);
+		return (1 - y + (int)y); //s
 }
 
 t_data *ft_putcol(t_data *img)
@@ -92,7 +109,7 @@ t_data *ft_putcol(t_data *img)
 	i = 0;
 	while (angle1 < angle2)
 	{
-		c = 0.3;
+		c = 0.001;
 		while (c)
 		{
 			x = img->x + c * cos(angle1);

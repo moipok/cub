@@ -1,9 +1,9 @@
 R      1080         720
-NO ./text/greystone.xpm
+WE ./text/greystone.xpm
 SO ./text/bluestone.xpm
-WE ./text/redbrick.xpm
-EA ./text/purplestone.xpm
-    S      ./text/itachi.xpm
+EA ./text/redbrick.xpm
+NO ./text/putin.xpm
+S ./text/purplestone.xpm
 F 220,100,0
 C 225  ,  30  ,  0
 
