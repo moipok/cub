@@ -1,46 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchars.c                                      :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/05 19:54:36 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/05 19:55:37 by fbarbera         ###   ########.fr       */
+/*   Created: 2020/09/05 19:55:04 by fbarbera          #+#    #+#             */
+/*   Updated: 2020/09/05 19:55:28 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_putchar(char c)
+void	ft_lstfree(t_list **list)
 {
-	write(1, &c, 1);
+	t_list *a;
+	t_list *b;
+
+	b = *list;
+	while (b->next)
+	{
+		a = b;
+		b = b->next;
+		free(a);
+	}
+	free(b);
 }
 
-void	ft_putnbr(int n)
+int		ft_arrlen(char **arr)
 {
-	if (n == -2147483648)
-	{
-		ft_putchar('-');
-		ft_putchar('2');
-		n = 147483648;
-	}
-	if (n < 0)
-	{
-		n = n * -1;
-		ft_putchar('-');
-	}
-	if (n > 9)
-	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
-	}
-	else
-		ft_putchar(n + '0');
+	int i;
+
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
 }
 
-void	ft_putstr(char *s)
+int		ft_maxlenarr(char **arr)
 {
-	if (s)
-		write(1, s, ft_strlenn(s));
+	int i;
+	int tmp;
+	
+	i = 0;
+	tmp = 0;
+	while (arr[i])
+	{
+		if (ft_strlen(arr[i]) > tmp)
+			tmp = ft_strlen(arr[i]);
+		i++;
+	}
+	return (tmp);
 }

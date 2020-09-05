@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/05 19:54:24 by fbarbera          #+#    #+#             */
+/*   Updated: 2020/09/05 19:56:15 by fbarbera         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -89,4 +101,8 @@ void		setdata(char **str, t_data *img, t_flags *flag);
 int 		fl_sumflag(t_flags *flag);
 void		ft_cleanflag(t_flags *flag);
 void freemass(char **str);
+void	ft_lstfree(t_list **list);
+int		ft_arrlen(char **arr);
+int		ft_maxlenarr(char **arr);
+int 	ft_checkmap(char **map);
 #endif

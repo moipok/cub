@@ -1,19 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/05 19:54:10 by fbarbera          #+#    #+#             */
+/*   Updated: 2020/09/05 19:55:30 by fbarbera         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void	ft_lstfree(t_list **list)
-{
-	t_list *a;
-	t_list *b;
-
-	b = *list;
-	while (b->next)
-	{
-		a = b;
-		b = b->next;
-		free(a);
-	}
-	free(b);
-}
 
 char	**ft_create_arr(t_list *list)
 {
@@ -39,15 +37,6 @@ char	**ft_create_arr(t_list *list)
 	return (arr);
 }
 
-int		ft_arrlen(char **arr)
-{
-	int i;
-
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
-}
 
 double	ft_angle(char c)
 {
@@ -61,6 +50,7 @@ double	ft_angle(char c)
 		return (0);
 }
 
+
 char	**ft_bigarr(char **arr, t_data *img)
 {
 	char **new;
@@ -72,9 +62,10 @@ char	**ft_bigarr(char **arr, t_data *img)
 		exit (1);
 	i = 0;
 	flag = 0;
+	j = ft_maxlenarr(arr);
 	while (arr[i])
 	{
-		if (!(new[i] = ft_calloc(sizeof(char), (ft_strlenn(arr[i]) + 1))))
+		if (!(new[i] = ft_calloc(sizeof(char), j + 1)))
 			exit (1);
 		i++;
 	}
@@ -95,8 +86,11 @@ char	**ft_bigarr(char **arr, t_data *img)
 			else if (flag == 1 && (arr[i][j] == 'N' || arr[i][j] == 'E' ||arr[i][j] == 'W' || arr[i][j] == 'S'))
 			{
 				new[i][j] = '0';
+				//error
 				return (0);
 			}
+			else if (arr[i][j] == ' ')
+				new[i][j] = '1';
 			else
 				new[i][j] = arr[i][j];
 			j++;
@@ -110,16 +104,12 @@ char	**ft_bigarr(char **arr, t_data *img)
 
 void 	ft_parser(int argc, char **argv, t_data *img)
 {
-	char **arr;
-	char **map;
-	int i;
 	int fd;
 	char *line;
 	t_list *list;
 	t_flags *flag;
 	char **tmp;
 
-	
 	line = NULL;
 	list = NULL;
 	if (!(flag = malloc(sizeof(t_flags))))
@@ -130,9 +120,7 @@ void 	ft_parser(int argc, char **argv, t_data *img)
 	{
 		if (fl_sumflag(flag) > 7)
 			ft_lstadd_back(&list, ft_lstnew(line));
-		else if (line[0] == NULL)
-			;
-		else
+		else if (line[0] != NULL)
 		{
 			tmp = ft_split(line, ' ');
 			setdata(tmp, img, flag);
@@ -141,5 +129,10 @@ void 	ft_parser(int argc, char **argv, t_data *img)
 	}
 	ft_lstadd_back(&list, ft_lstnew(line));
 	img->map = ft_bigarr(ft_create_arr(list), img);
+	if (ft_checkmap(img->map) == 0)
+		{
+			printf("error");
+			exit(1);
+		}
 	free(flag); 
 }
