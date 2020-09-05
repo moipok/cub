@@ -114,7 +114,7 @@ t_data *ft_putcol(t_data *img)
 			y = img->y + c * sin(angle1);
 			xx = (int)x;
 			yy = (int)y;
-		 	if (img->map[xx][yy] == '1') 
+		 	if (img->map[xx][yy] == '1' || img->map[xx][yy] == '\0') 
 			{
 				c = c - 0.03;
 				while (c)
@@ -123,7 +123,7 @@ t_data *ft_putcol(t_data *img)
 					y = img->y + c * sin(angle1);
 					xx = (int)x;
 					yy = (int)y;
-					if (img->map[xx][yy] == '1') 
+					if (img->map[xx][yy] == '1' || img->map[xx][yy] == '\0') 
 					{
 						pixelhiegt = img->r2  / (c * cos(img->mainangle - angle1));
 						wall = ft_findwall(img, c, x, y, angle1);
