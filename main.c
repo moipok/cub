@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:54 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/05 19:55:31 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/06 01:17:32 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,7 @@ int		main(int argc, char **argv)
 
 	img.mlx = NULL;
 	img.win = NULL;
-	img.fulldata = 0;
 	ft_parser(argc, argv, &img);
-	printf("%s \n %s \n %s \n %s\n %s \n", img.no, img.so, img.we, img.ea, img.sprite);
-	i = 0;
 	img.mlx = mlx_init();
 	img.win = mlx_new_window(img.mlx, img.r1, img.r2, "test");
 	//	ft_putwindow_3d(&img);

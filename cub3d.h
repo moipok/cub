@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:24 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/05 19:56:15 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/05 20:05:05 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,5 @@ void freemass(char **str);
 void	ft_lstfree(t_list **list);
 int		ft_arrlen(char **arr);
 int		ft_maxlenarr(char **arr);
-int 	ft_checkmap(char **map);
+int 	ft_checkmap(char **map, double x);
 #endif
