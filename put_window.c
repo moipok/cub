@@ -116,6 +116,8 @@ t_data *ft_putcol(t_data *img)
 
 	angle1 = img->mainangle - M_PI / 6;
 	angle2 = img->mainangle + M_PI / 6;
+	if (!(img->deep = malloc(sizeof(double) * img->r1)))
+		exit(0);
 	i = 0;
 	while (angle1 < angle2)
 	{
@@ -141,6 +143,7 @@ t_data *ft_putcol(t_data *img)
 						wall = ft_findwall(img, c, x, y, angle1);
 						partofwall = ft_findpartofwall(wall->name, x, y);
 						ft_putline(img, i, pixelhiegt, wall, partofwall);
+						img->deep[i] = c;
 						i++;
 						break;
 					}
@@ -179,6 +182,7 @@ void	ft_putwindow_3d(t_data *img)
 	img->img = mlx_new_image(img->mlx, img->r1, img->r2);
     img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 	ft_puttop(img);
-	img = ft_putcol(img);
+	ft_putcol(img);
+	ft_putsprite(img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 }

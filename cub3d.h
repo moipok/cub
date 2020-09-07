@@ -47,6 +47,15 @@ typedef struct		s_flags
 	int				allflag;
 }					t_flags;
 
+
+typedef struct		s_sprite
+{
+	double 			x;
+	double 			y;
+	double			average;
+	double			angle;
+}					t_sprite;
+
 typedef struct		s_data 
 {
     void			*mlx;
@@ -77,6 +86,8 @@ typedef struct		s_data
 	t_xpm			*wetext;
 	t_xpm			*eatext;
 	t_xpm			*spritetext;
+	t_sprite		*spr;
+	double			*deep;
 }					t_data;
 
 
@@ -100,9 +111,10 @@ int 		ft_setfloorcollor(char **str);
 void		setdata(char **str, t_data *img, t_flags *flag);
 int 		fl_sumflag(t_flags *flag);
 void		ft_cleanflag(t_flags *flag);
-void freemass(char **str);
-void	ft_lstfree(t_list **list);
-int		ft_arrlen(char **arr);
-int		ft_maxlenarr(char **arr);
-int 	ft_checkmap(char **map, double x);
+void 		freemass(char **str);
+void		ft_lstfree(t_list **list);
+int			ft_arrlen(char **arr);
+int			ft_maxlenarr(char **arr);
+int 		ft_checkmap(char **map, double x);
+void		ft_putsprite(t_data *img);
 #endif
