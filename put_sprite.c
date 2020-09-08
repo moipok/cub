@@ -102,23 +102,40 @@ double	correctangle1(double angle, double mainangle)
 	return (angle);
 }
 
+int		get_t(int trgb)
+{
+	return (trgb & (0xFF << 24));
+}
+
 void	putssss(t_data *img, int num)
 {
 	double i;
 	int l;
 	int k;
+	double pixelhiegt;
+	int collor;
+
+	pixelhiegt = img->r2  / ( 1.5 * img->spr[num].average);
 
 	i = img->r1/2 + (img->mainangle - img->spr[num].angle) / (M_PI / (img->r1 * 3));
 	l = 0;
-	while (l < 25)
+	while (l < pixelhiegt && l < img->r1/2 - 1)
 	{
 		k = 0;
-		while (k < 25)
+		while (k < pixelhiegt && k < img->r2 / 2 - 1)
 		{
-			my_mlx_pixel_put(img, i + l, img->r2/2 + k, 0x000000);
-			my_mlx_pixel_put(img, i - l, img->r2/2 + k, 0x000000);
-			my_mlx_pixel_put(img, i + l, img->r2/2 - k, 0xFFFFFF);
-			my_mlx_pixel_put(img, i - l, img->r2/2 - k, 0x000000);
+			collor = get_collor(img->spritetext, img->spritetext->width * ((pixelhiegt + l)/(2 * pixelhiegt)), img->spritetext->height * ((pixelhiegt/2 + k/2)/pixelhiegt));
+			if (get_t(collor) == 0)
+				my_mlx_pixel_put(img, i + l, img->r2/2 + k, collor);
+			collor = get_collor(img->spritetext, img->spritetext->width * ((pixelhiegt - l)/(2 * pixelhiegt)), img->spritetext->height * ((pixelhiegt/2 + k/2)/pixelhiegt));
+			if (get_t(collor) == 0)
+				my_mlx_pixel_put(img, i - l, img->r2/2 + k, collor);
+			collor = get_collor(img->spritetext, img->spritetext->width * ((pixelhiegt + l)/(2 * pixelhiegt)), img->spritetext->height * ((pixelhiegt/2 - k/2)/pixelhiegt));
+			if (get_t(collor) == 0)
+				my_mlx_pixel_put(img, i + l, img->r2/2 - k, collor);
+			collor = get_collor(img->spritetext, img->spritetext->width * ((pixelhiegt - l)/(2 * pixelhiegt)), img->spritetext->height * ((pixelhiegt/2 - k/2)/pixelhiegt));
+			if (get_t(collor) == 0)
+				my_mlx_pixel_put(img, i - l, img->r2/2 - k, collor);
 			k++;
 		}
 		l++;
