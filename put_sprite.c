@@ -84,6 +84,47 @@ void bubblesort(t_sprite *spr, int size)
 	}
 }
 
+double	correctangle(double angle)
+{
+	if (angle >= 2 * M_PI)
+		return(angle - 2 * M_PI);
+	else if (angle < 0)
+		return(angle + 2 * M_PI);
+	return (angle);
+}
+
+double	correctangle1(double angle, double mainangle)
+{
+	if (angle + M_PI_2 < mainangle)
+		return(angle + 2 * M_PI);
+	else if (angle - M_PI_2 > mainangle)
+		return(angle - 2 * M_PI);
+	return (angle);
+}
+
+void	putssss(t_data *img, int num)
+{
+	double i;
+	int l;
+	int k;
+
+	i = img->r1/2 + (img->mainangle - img->spr[num].angle) / (M_PI / (img->r1 * 3));
+	l = 0;
+	while (l < 25)
+	{
+		k = 0;
+		while (k < 25)
+		{
+			my_mlx_pixel_put(img, i + l, img->r2/2 + k, 0x000000);
+			my_mlx_pixel_put(img, i - l, img->r2/2 + k, 0x000000);
+			my_mlx_pixel_put(img, i + l, img->r2/2 - k, 0xFFFFFF);
+			my_mlx_pixel_put(img, i - l, img->r2/2 - k, 0x000000);
+			k++;
+		}
+		l++;
+	}
+}
+
 void	ft_putsprite(t_data *img)
 {
 	double angle1;
@@ -112,9 +153,11 @@ void	ft_putsprite(t_data *img)
 					img->spr[i].x = (int)x + 0.5;
 					img->spr[i].y = (int)y + 0.5;
 					img->spr[i].average = (sqrt(pow((img->x - img->spr[i].x), 2) + pow((img->y - img->spr[i].y), 2)));
-					img->spr[i].angle = atan2((img->spr[i].y - img->y), (img->spr[i].x - img->x));
+					img->spr[i].angle = correctangle1(atan2((img->spr[i].y - img->y), (img->spr[i].x - img->x)), \
+					img->mainangle);
 					printf("%f\n", img->spr[i].angle);
 					printf("%f\n", img->mainangle);
+					putssss(img, i);
 					i++;
 				}
 			}

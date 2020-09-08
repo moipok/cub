@@ -28,7 +28,7 @@ int            get_collor(t_xpm *data, int x, int y)
 	int 	collor;
 
     dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-    collor = *(unsigned int*)dst;
+    collor = *(int*)dst;
 	return (collor);
 }
 
@@ -50,7 +50,10 @@ void ft_putline(t_data *img, int i, double pixelhiegt, t_xpm *whatwall, double p
 	int end;
 
 	if (i > img->r1)
+	{
+		printf("%d,\n", i);
 		return ;
+	}
 	if ((int)pixelhiegt > img->r2)
 	{
 		jj = 0;

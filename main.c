@@ -58,11 +58,12 @@ int             ft_docase(int keycode, t_data *img)
 	else if (keycode == 0)
 		img = ft_a(img);
 	else if (keycode == 123)
-		img->mainangle += 0.08;
+		img->mainangle += 5 * M_PI/365;
 	else if (keycode == 124)
-		img->mainangle -= 0.08;
+		img->mainangle -= 5 * M_PI/365;
 	else
 		printf("%d\n", keycode);
+	img->mainangle = correctangle(img->mainangle);
 	ft_putwindow_3d(img);
 	return (0);
 }

@@ -117,4 +117,6 @@ int			ft_arrlen(char **arr);
 int			ft_maxlenarr(char **arr);
 int 		ft_checkmap(char **map, double x);
 void		ft_putsprite(t_data *img);
+double		correctangle(double angle);
+double		correctangle1(double angle, double mainangle);
 #endif
