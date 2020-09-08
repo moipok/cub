@@ -119,22 +119,26 @@ void	putssss(t_data *img, int num)
 
 	i = img->r1/2 + (img->mainangle - img->spr[num].angle) / (M_PI / (img->r1 * 3));
 	l = 0;
-	while (l < pixelhiegt && l < img->r1/2 - 1)
+	while (l < pixelhiegt)
 	{
 		k = 0;
 		while (k < pixelhiegt && k < img->r2 / 2 - 1)
 		{
 			collor = get_collor(img->spritetext, img->spritetext->width * ((pixelhiegt + l)/(2 * pixelhiegt)), img->spritetext->height * ((pixelhiegt/2 + k/2)/pixelhiegt));
-			if (get_t(collor) == 0 && (img->spr[num].average < img->deep[img->r1 - (int)i - l]))
+			if (get_t(collor) == 0 && (img->spr[num].average < img->deep[img->r1 - (int)i - l]) \
+			&& (int)i + l < img->r1)
 				my_mlx_pixel_put(img, i + l, img->r2/2 + k, collor);
 			collor = get_collor(img->spritetext, img->spritetext->width * ((pixelhiegt - l)/(2 * pixelhiegt)), img->spritetext->height * ((pixelhiegt/2 + k/2)/pixelhiegt));
-			if (get_t(collor) == 0 && (img->spr[num].average < img->deep[img->r1 - (int)i + l]))
+			if (get_t(collor) == 0 && (img->spr[num].average < img->deep[img->r1 - (int)i + l])\
+			&& (int)i - l < img->r1)
 				my_mlx_pixel_put(img, i - l, img->r2/2 + k, collor);
 			collor = get_collor(img->spritetext, img->spritetext->width * ((pixelhiegt + l)/(2 * pixelhiegt)), img->spritetext->height * ((pixelhiegt/2 - k/2)/pixelhiegt));
-			if (get_t(collor) == 0 && (img->spr[num].average < img->deep[img->r1 - (int)i - l]))
+			if (get_t(collor) == 0 && (img->spr[num].average < img->deep[img->r1 - (int)i - l])\
+			&& (int)i + l < img->r1)
 				my_mlx_pixel_put(img, i + l, img->r2/2 - k, collor);
 			collor = get_collor(img->spritetext, img->spritetext->width * ((pixelhiegt - l)/(2 * pixelhiegt)), img->spritetext->height * ((pixelhiegt/2 - k/2)/pixelhiegt));
-			if (get_t(collor) == 0 && (img->spr[num].average < img->deep[img->r1 - (int)i + l]))
+			if (get_t(collor) == 0 && (img->spr[num].average < img->deep[img->r1 - (int)i + l])\
+			&& (int)i - l < img->r1)
 				my_mlx_pixel_put(img, i - l, img->r2/2 - k, collor);
 			k++;
 		}
