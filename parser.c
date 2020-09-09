@@ -62,6 +62,7 @@ char	**ft_bigarr(char **arr, t_data *img)
 		exit (1);
 	i = 0;
 	flag = 0;
+	img->num = 0;
 	j = ft_maxlenarr(arr);
 	while (arr[i])
 	{
@@ -92,11 +93,16 @@ char	**ft_bigarr(char **arr, t_data *img)
 			else if (arr[i][j] == ' ')
 				new[i][j] = '1';
 			else
+			{
+				if (arr[i][j] == '2')
+					img->num++;
 				new[i][j] = arr[i][j];
+			}
 			j++;
 		}
 		i++;
 	}
+	printf("%d\n", img->num);
 	ft_putstr("lala\n");
 	freemass(arr);
 	return (new);
@@ -118,7 +124,7 @@ void 	ft_parser(int argc, char **argv, t_data *img)
 	fd = open(argv[1], O_RDONLY);
 	while (get_next_line(fd, &line))
 	{
-		if (fl_sumflag(flag) > 7 && line[0] != '\0')
+		if (fl_sumflag(flag) > 7 && line[0] != '\0') //прерыв карты
 			ft_lstadd_back(&list, ft_lstnew(line));
 		else if (line[0] != NULL)
 		{

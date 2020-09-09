@@ -1,13 +1,15 @@
 #include "cub3d.h"
 
-int		check_elem(int x, int y, t_sprite *spr)
+int		check_elem(double x, double y, t_sprite *spr, double s)
 {
 	int i;
 	
 	i = 0;
+	if (sqrt(pow((x - (int)x - 0.5), 2) + pow((y - (int)y - 0.5), 2)) > 0.3 && s < 1)
+		return (1);
 	while (i < 20)
 	{
-		if (spr[i].x == x + 0.5 && spr[i].y == y + 0.5)
+		if (spr[i].x == (int)x + 0.5 && spr[i].y == (int)y + 0.5)
 			return (1);
 		i++;
 	}
@@ -65,11 +67,11 @@ void bubblesort(t_sprite *spr, int size)
 	int flag;
 	t_sprite tmp;
 
-	i = 0;
 	flag = 1;
 	while (flag > 0)
 	{
 		flag = 0;
+		i = 0;
 		while(i < size - 1)
 		{
 			if (spr[i].average < spr[i + 1].average)
@@ -82,6 +84,7 @@ void bubblesort(t_sprite *spr, int size)
 			i++;
 		}
 	}
+	i = 0;
 }
 
 double	correctangle(double angle)
@@ -107,6 +110,55 @@ int		get_t(int trgb)
 	return (trgb & (0xFF << 24));
 }
 
+
+void	putsprite(t_data *img, int num)
+{
+	double i;
+	int l;
+	int k;
+	double pixelhiegt;
+	int collor;
+	double cosin;
+
+	cosin = cos(img->mainangle - img->spr[num].angle);
+	if (cosin < 0.85)
+		cosin = 0.85;
+	pixelhiegt = 0.7 * img->r2  / (img->spr[num].average * cosin);
+	i = img->r1/2 + (img->mainangle - img->spr[num].angle) / (M_PI / (img->r1 * 3)) - pixelhiegt/2;
+	l = 0;
+	while (l < pixelhiegt)
+	{
+		if (i + l > 0 && img->spr[num].average < img->deep[(int)(img->r1 - l - i)] && i + l < img->r1)
+		{
+			if (pixelhiegt > img->r2)
+			{
+				k = 0;
+				while (k < img->r2)
+				{
+					collor = get_collor(img->spritetext, img->spritetext->width * (l/pixelhiegt), img->spritetext->height * ((pixelhiegt - img->r2)/2 + k)/pixelhiegt);
+					if (get_t(collor) == 0)
+						my_mlx_pixel_put(img, i + l, k, collor);
+					k++;
+				}
+			}
+			else 
+			{
+				k = (img->r2 - pixelhiegt)/2 + 1;
+				while (k < (img->r2 - pixelhiegt)/2 + pixelhiegt)
+				{
+					collor = get_collor(img->spritetext, img->spritetext->width * (l/pixelhiegt), img->spritetext->height * (k - (img->r2 - pixelhiegt)/2)/pixelhiegt);
+					if (get_t(collor) == 0)
+						my_mlx_pixel_put(img, i + l, k, collor);
+					k++;
+				}
+			}
+		}
+		else if (i + l > img->r1)
+			break;
+		l++;
+	}
+}
+
 void	putssss(t_data *img, int num)
 {
 	double i;
@@ -115,14 +167,14 @@ void	putssss(t_data *img, int num)
 	double pixelhiegt;
 	int collor;
 
-	pixelhiegt = img->r2  / ( img->spr[num].average);
+	pixelhiegt = img->r2  / (img->spr[num].average * cos(img->mainangle - img->spr[num].angle));
 
 	i = img->r1/2 + (img->mainangle - img->spr[num].angle) / (M_PI / (img->r1 * 3));
 	l = 0;
 	while (l < pixelhiegt)
 	{
 		k = 0;
-		while (k < pixelhiegt && k < img->r2 / 2 - 1)
+		while (k < pixelhiegt && k < img->r2/2)
 		{
 			collor = get_collor(img->spritetext, img->spritetext->width * ((pixelhiegt + l)/(2 * pixelhiegt)), img->spritetext->height * ((pixelhiegt/2 + k/2)/pixelhiegt));
 			if (get_t(collor) == 0 && (img->spr[num].average < img->deep[img->r1 - (int)i - l]) \
@@ -156,8 +208,8 @@ void	ft_putsprite(t_data *img)
 	
 	angle1 = img->mainangle - M_PI / 6;
 	i = 0;
-	img->spr = malloc(sizeof(t_sprite) * 20); 
-	null_mas(img->spr, 20);
+	img->spr = malloc(sizeof(t_sprite) * img->num); 
+	null_mas(img->spr, img->num);
 	while (angle1 < img->mainangle + M_PI / 6)
 	{
 		c = 0.001;
@@ -169,23 +221,29 @@ void	ft_putsprite(t_data *img)
 				break;
 			if (img->map[(int)x][(int)y] == '2')
 			{
-				if (check_elem((int)x, (int)y, img->spr) == 0)
+				if (check_elem(x, y, img->spr, (sqrt(pow((img->x - (int)x + 0.5), 2) + pow((img->y - (int)y + 0.5), 2)))) == 0)
 				{
 					img->spr[i].x = (int)x + 0.5;
 					img->spr[i].y = (int)y + 0.5;
 					img->spr[i].average = (sqrt(pow((img->x - img->spr[i].x), 2) + pow((img->y - img->spr[i].y), 2)));
 					img->spr[i].angle = correctangle1(atan2((img->spr[i].y - img->y), (img->spr[i].x - img->x)), \
 					img->mainangle);
-					printf("%f\n", img->spr[i].angle);
-					printf("%f\n", img->mainangle);
-					putssss(img, i);
 					i++;
 				}
 			}
-			c = c + 0.1;
+			c = c + 0.5;
 		}
-		angle1 += M_PI / (img->r1 * 3);
+		angle1 += 5 * M_PI / (img->r1 * 3);
 	}
-	bubblesort(img->spr, 20);
+	bubblesort(img->spr, i);
+	c = 0;
+	while (c < i)
+	{
+		if (img->spr[(int)c].average > 0.7)
+			putsprite(img, (int)c);
+		printf("%f\n", img->spr[(int)c].average);
+		c = c+1;
+	}
+	free(img->deep);
 	free(img->spr);
 }

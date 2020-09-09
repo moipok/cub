@@ -81,6 +81,7 @@ typedef struct		s_data
 	char			*ea;
 	int				cellar;
 	int				floor;
+	int				num;
 	t_xpm			*notext;
 	t_xpm			*sotext;
 	t_xpm			*wetext;
