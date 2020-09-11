@@ -49,8 +49,9 @@ void ft_putline(t_data *img, int i, double pixelhiegt, t_xpm *whatwall, double p
 	int jj;
 	int end;
 	int collor;
+	int col;
 	
-	i = i*2;
+	i = i*img->coef;
 	if (i > img->r1)
 	{
 		printf("%d,\n", i);
@@ -72,15 +73,18 @@ void ft_putline(t_data *img, int i, double pixelhiegt, t_xpm *whatwall, double p
 		if (jj < end)
 		{
 			collor = get_collor(whatwall, (partofwall * whatwall->width), (whatwall->height * ft_foundpixel(jj, end, pixelhiegt, img->r2)));
-			my_mlx_pixel_put(img, img->r1 - i, jj, collor);
-			my_mlx_pixel_put(img, img->r1 - i - 1, jj, collor);
+			col = -1;
+			while (col++ < img->coef)
+				my_mlx_pixel_put(img, img->r1 - i - col, jj, collor);
 		}
 		else
 		{
-			my_mlx_pixel_put(img, img->r1 - i - 1, img->r2 - jj, img->floor);
-			my_mlx_pixel_put(img, img->r1 - i - 1, jj, img->cellar);
-			my_mlx_pixel_put(img, img->r1 - i , img->r2 - jj, img->floor);
-			my_mlx_pixel_put(img, img->r1 - i, jj, img->cellar);
+			col = -1;
+			while (col++ < img->coef)
+			{
+				my_mlx_pixel_put(img, img->r1 - i - col, img->r2 - jj, img->floor);
+				my_mlx_pixel_put(img, img->r1 - i - col, jj, img->cellar);
+			}
 		}
 		jj++;
 	}
@@ -133,7 +137,7 @@ t_data *ft_putcol(t_data *img)
 
 	angle1 = img->mainangle - M_PI / 6;
 	angle2 = img->mainangle + M_PI / 6;
-	if (!(img->deep = malloc(sizeof(double) * img->r1)))
+	if (!(img->deep = malloc(sizeof(double) * (img->r1 / img->coef + 10))))
 		exit(0);
 	i = 0;
 	while (angle1 < angle2)
@@ -166,7 +170,7 @@ t_data *ft_putcol(t_data *img)
 			}
 			c = c + 0.05;
 		}
-		angle1 += M_PI * 2 / (img->r1 * 3) ;
+		angle1 += M_PI * img->coef / (img->r1 * 3) ;
 	}
 	return (img);
 }

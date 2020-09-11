@@ -128,7 +128,7 @@ void	putsprite(t_data *img, int num)
 	l = 0;
 	while (l < pixelhiegt)
 	{
-		if (i + l > 0 && img->spr[num].average < img->deep[(int)((img->r1 - l - i)/2)] && i + l < img->r1)
+		if (i + l > 0 && img->spr[num].average < img->deep[(int)((img->r1 - l - i)/img->coef)] && i + l < img->r1)
 		{
 			if (pixelhiegt > img->r2)
 			{

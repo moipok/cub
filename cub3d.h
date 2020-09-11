@@ -73,6 +73,7 @@ typedef struct		s_data
 	double			mainangle;
 	int				r1;
 	int				r2;
+	int				coef;
 	int				fulldata;
 	char			*sprite;
 	char			*no;
