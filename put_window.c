@@ -56,8 +56,8 @@ void ft_putline(t_data *img, int i, double pixelhiegt, t_xpm *whatwall, double p
 	}
 	if ((int)pixelhiegt > img->r2)
 	{
-		jj = 0;
-		end = img->r2;
+		jj = 1;
+		end = img->r2 - 1;
 	}
 	else
 	{	
@@ -65,9 +65,15 @@ void ft_putline(t_data *img, int i, double pixelhiegt, t_xpm *whatwall, double p
 		end = jj + pixelhiegt;
 	}
 	tmp = jj;
-	while (jj < end)
+	while (jj < img->r2 - 1)
 	{
-		my_mlx_pixel_put(img, img->r1 - i, jj, get_collor(whatwall, (partofwall * whatwall->width), (whatwall->height * ft_foundpixel(jj, end, pixelhiegt, img->r2))));
+		if (jj < end)
+			my_mlx_pixel_put(img, img->r1 - i, jj, get_collor(whatwall, (partofwall * whatwall->width), (whatwall->height * ft_foundpixel(jj, end, pixelhiegt, img->r2))));
+		else
+		{
+			my_mlx_pixel_put(img, img->r1 - i, img->r2 - jj, img->floor);
+			my_mlx_pixel_put(img, img->r1 - i, jj, img->cellar);
+		}
 		jj++;
 	}
 }
@@ -129,18 +135,14 @@ t_data *ft_putcol(t_data *img)
 		{
 			x = img->x + c * cos(angle1);
 			y = img->y + c * sin(angle1);
-			xx = (int)x;
-			yy = (int)y;
-		 	if (img->map[xx][yy] == '1' || img->map[xx][yy] == '\0') 
+		 	if (img->map[(int)x][(int)y] == '1' || img->map[(int)x][(int)y] == '\0') 
 			{
-				c = c - 0.03;
+				c = c - 0.05;
 				while (c)
 				{
 					x = img->x + c * cos(angle1);
 					y = img->y + c * sin(angle1);
-					xx = (int)x;
-					yy = (int)y;
-					if (img->map[xx][yy] == '1' || img->map[xx][yy] == '\0') 
+					if (img->map[(int)x][(int)y] == '1' || img->map[(int)x][(int)y] == '\0') 
 					{
 						pixelhiegt = img->r2  / (c * cos(img->mainangle - angle1));
 						wall = ft_findwall(img, c, x, y, angle1);
@@ -154,37 +156,17 @@ t_data *ft_putcol(t_data *img)
 				}
 				break;
 			}
-			c = c + 0.03;
+			c = c + 0.05;
 		}
 		angle1 += M_PI / (img->r1 * 3);
 	}
 	return (img);
 }
 
-void	ft_puttop(t_data *img)
-{
-	int i;
-	int j;
-
-	i = 1;
-	while (i < img->r1)
-	{
-		j = img->r2 / 2;
-		while (j)
-		{
-			my_mlx_pixel_put(img, i, (img->r2 / 2) - j + 1, img->floor );
-			my_mlx_pixel_put(img, i, (img->r2 / 2) + j - 1, img->cellar );
-			j--;
-		}
-		i++;
-	}
-}
-
 void	ft_putwindow_3d(t_data *img)
 {
 	img->img = mlx_new_image(img->mlx, img->r1, img->r2);
     img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
-	ft_puttop(img);
 	ft_putcol(img);
 	ft_putsprite(img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);

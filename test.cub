@@ -1,12 +1,12 @@
 
 NO ./text/purplestone.xpm
 
-R      1440         700
+R      1920         1200
 WE ./text/greystone.xpm
 SO ./text/bluestone.xpm
 EA ./text/redbrick.xpm            
  C 139      , 69, 190
-S ./text/tank.xpm
+S ./text/coin1.xpm
 F 75, 0 385, 130
 
         111111111111111111111111

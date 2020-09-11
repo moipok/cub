@@ -123,7 +123,7 @@ void	putsprite(t_data *img, int num)
 	cosin = cos(img->mainangle - img->spr[num].angle);
 	if (cosin < 0.85)
 		cosin = 0.85;
-	pixelhiegt = 0.7 * img->r2  / (img->spr[num].average * cosin);
+	pixelhiegt = 0.3 * img->r2  / (img->spr[num].average * cosin);
 	i = img->r1/2 + (img->mainangle - img->spr[num].angle) / (M_PI / (img->r1 * 3)) - pixelhiegt/2;
 	l = 0;
 	while (l < pixelhiegt)
@@ -241,7 +241,6 @@ void	ft_putsprite(t_data *img)
 	{
 		if (img->spr[(int)c].average > 0.7)
 			putsprite(img, (int)c);
-		printf("%f\n", img->spr[(int)c].average);
 		c = c+1;
 	}
 	free(img->deep);
