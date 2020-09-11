@@ -110,6 +110,8 @@ int		main(int argc, char **argv)
 	ft_parser(argc, argv, &img);
 	img.mlx = mlx_init();
 	img.win = mlx_new_window(img.mlx, img.r1, img.r2, "test");
+	// img.img = mlx_new_image(img.mlx, img.r1, img.r2);
+    // img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	//	ft_putwindow_3d(&img);
 	inittexture(&img);
 	ft_putwindow_3d(&img);

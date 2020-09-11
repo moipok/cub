@@ -124,11 +124,11 @@ void	putsprite(t_data *img, int num)
 	if (cosin < 0.85)
 		cosin = 0.85;
 	pixelhiegt = 0.3 * img->r2  / (img->spr[num].average * cosin);
-	i = img->r1/2 + (img->mainangle - img->spr[num].angle) / (M_PI / (img->r1 * 3)) - pixelhiegt/2;
+	i = (img->r1/2 + (img->mainangle - img->spr[num].angle) / (M_PI / (img->r1 * 3)) - pixelhiegt/2);
 	l = 0;
 	while (l < pixelhiegt)
 	{
-		if (i + l > 0 && img->spr[num].average < img->deep[(int)(img->r1 - l - i)] && i + l < img->r1)
+		if (i + l > 0 && img->spr[num].average < img->deep[(int)((img->r1 - l - i)/2)] && i + l < img->r1)
 		{
 			if (pixelhiegt > img->r2)
 			{

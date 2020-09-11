@@ -48,7 +48,9 @@ void ft_putline(t_data *img, int i, double pixelhiegt, t_xpm *whatwall, double p
 	int tmp;
 	int jj;
 	int end;
-
+	int collor;
+	
+	i = i*2;
 	if (i > img->r1)
 	{
 		printf("%d,\n", i);
@@ -68,10 +70,16 @@ void ft_putline(t_data *img, int i, double pixelhiegt, t_xpm *whatwall, double p
 	while (jj < img->r2 - 1)
 	{
 		if (jj < end)
-			my_mlx_pixel_put(img, img->r1 - i, jj, get_collor(whatwall, (partofwall * whatwall->width), (whatwall->height * ft_foundpixel(jj, end, pixelhiegt, img->r2))));
+		{
+			collor = get_collor(whatwall, (partofwall * whatwall->width), (whatwall->height * ft_foundpixel(jj, end, pixelhiegt, img->r2)));
+			my_mlx_pixel_put(img, img->r1 - i, jj, collor);
+			my_mlx_pixel_put(img, img->r1 - i - 1, jj, collor);
+		}
 		else
 		{
-			my_mlx_pixel_put(img, img->r1 - i, img->r2 - jj, img->floor);
+			my_mlx_pixel_put(img, img->r1 - i - 1, img->r2 - jj, img->floor);
+			my_mlx_pixel_put(img, img->r1 - i - 1, jj, img->cellar);
+			my_mlx_pixel_put(img, img->r1 - i , img->r2 - jj, img->floor);
 			my_mlx_pixel_put(img, img->r1 - i, jj, img->cellar);
 		}
 		jj++;
@@ -158,16 +166,18 @@ t_data *ft_putcol(t_data *img)
 			}
 			c = c + 0.05;
 		}
-		angle1 += M_PI / (img->r1 * 3);
+		angle1 += M_PI * 2 / (img->r1 * 3) ;
 	}
 	return (img);
 }
 
 void	ft_putwindow_3d(t_data *img)
 {
+	mlx_clear_window(img->mlx, img->win);
 	img->img = mlx_new_image(img->mlx, img->r1, img->r2);
     img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 	ft_putcol(img);
 	ft_putsprite(img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
+
 }

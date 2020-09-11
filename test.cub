@@ -1,7 +1,7 @@
 
 NO ./text/purplestone.xpm
 
-R      1920         1200
+R      1024         768
 WE ./text/greystone.xpm
 SO ./text/bluestone.xpm
 EA ./text/redbrick.xpm            
