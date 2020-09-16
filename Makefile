@@ -3,7 +3,8 @@ NAME = cub3d
 SRCS = main.c get_next_line.c get_next_line_utils.c \
 		parser.c ft_putchars.c ft_move.c put_window.c \
 		put_text.c ft_setfloorcollor.c setdata.c \
-		parser_utils.c parser_check_map.c put_sprite.c
+		parser_utils.c parser_check_map.c put_sprite.c \
+		setdata_utils.c
 
 #SRCO = $(SRCS:.c=.o)
 

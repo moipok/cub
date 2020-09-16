@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:24 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/05 20:05:05 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/16 17:13:00 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct		s_flags
 	int				eaflag;
 	int				spriteflag;
 	int				r1flag;
-	int				r2flag;
 	int				cellarflag;
 	int				floorflag;
 	int				allflag;
@@ -121,4 +120,9 @@ int 		ft_checkmap(char **map, double x);
 void		ft_putsprite(t_data *img);
 double		correctangle(double angle);
 double		correctangle1(double angle, double mainangle);
+char 		*setno(char **str, t_flags *flag);
+char 		*setwe(char **str, t_flags *flag);
+char 		*setea(char **str, t_flags *flag);
+char 		*setso(char **str, t_flags *flag);
+char		*setsprite(char **str, t_flags *flag);
 #endif
