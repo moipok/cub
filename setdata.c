@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:55:19 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/16 17:12:59 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/17 23:38:01 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ int		setfc(char s, t_flags *flag, char **str)
 void	setdata(char **str, t_data *img, t_flags *flag)
 {
 	flag->allflag = fl_sumflag(flag);
-	if (str[0] == NULL)
-		exit(1);
-	else if (str[0][0] == 'R' && !flag->r1flag)
+	if (str[0][0] == 'R' && !flag->r1flag)
 	{
 		img->r1 = ft_atoi(str[1]);
 		img->r2 = ft_atoi(str[2]);

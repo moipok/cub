@@ -6,46 +6,40 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:55:14 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/16 15:31:50 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/17 23:37:58 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "cub3d.h"
 
-
-void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	putfloor(t_data *img, int  i, int jj)
 {
-    char    *dst;
-
-    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-    *(unsigned int*)dst = color;
-}
-
-int            get_collor(t_xpm *data, int x, int y)
-{
-    char    *dst;
-	int 	collor;
-
-    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-    collor = *(int*)dst;
-	return (collor);
-}
-
-double	ft_foundpixel(int jj,int end, double pixelhiegt, int r2)
-{
-	if (pixelhiegt > r2)
-		return(((pixelhiegt - r2)/2 + jj)/pixelhiegt);
-	else
+	int col;
+	
+	col = -1;
+	while (col++ < img->coef)
 	{
-		return ((jj - (r2 - pixelhiegt)/2)/pixelhiegt);
+		my_mlx_pixel_put(img, img->r1 - i - col, img->r2 - jj - 1, img->floor);
+		my_mlx_pixel_put(img, img->r1 - i - col, jj, img->cellar);
 	}
 }
 
-
-void ft_putline(t_data *img, int i, double pixelhiegt, t_xpm *whatwall, double partofwall)
+void	set_start_end(int pixelhiegt, int r2, int *end, int *jj)
 {
-	int tmp;
+	if (pixelhiegt > r2)
+	{
+		*jj = 1;
+		*end = r2 - 1;
+	}
+	else
+	{	
+		*jj = (r2 - pixelhiegt)/2;
+		*end = *jj + pixelhiegt;
+	}
+}
+
+void ft_putline(t_data *img, int i, double pixelhiegt, t_xpm *wall, double pofw)
+{
 	int jj;
 	int end;
 	int collor;
@@ -53,71 +47,22 @@ void ft_putline(t_data *img, int i, double pixelhiegt, t_xpm *whatwall, double p
 	
 	i = i*img->coef;
 	if (i > img->r1)
-	{
-		printf("%d,\n", i);
 		return ;
-	}
-	if ((int)pixelhiegt > img->r2)
-	{
-		jj = 1;
-		end = img->r2 - 1;
-	}
-	else
-	{	
-		jj = (img->r2 - pixelhiegt)/2;
-		end = jj + pixelhiegt;
-	}
-	tmp = jj;
+	set_start_end(pixelhiegt, img->r2, &end, &jj);
 	while (jj < img->r2 - 1)
 	{
 		if (jj < end)
 		{
-			collor = get_collor(whatwall, (partofwall * whatwall->width), (whatwall->height * ft_foundpixel(jj, end, pixelhiegt, img->r2)));
+			collor = get_collor(wall, (pofw * wall->width), (wall->height * \
+			ft_foundpixel(jj, end, pixelhiegt, img->r2)));
 			col = -1;
 			while (col++ < img->coef)
 				my_mlx_pixel_put(img, img->r1 - i - col, jj, collor);
 		}
 		else
-		{
-			col = -1;
-			while (col++ < img->coef)
-			{
-				my_mlx_pixel_put(img, img->r1 - i - col, img->r2 - jj, img->floor);
-				my_mlx_pixel_put(img, img->r1 - i - col, jj, img->cellar);
-			}
-		}
+			putfloor(img, i, jj);
 		jj++;
 	}
-}
-
-t_xpm 	*ft_findwall(t_data *img, double c, double x, double y, double angle1)
-{
-	double xx;
-	double yy;
-	
-	c = c - 0.001;
-	xx = img->x + c * cos(angle1);
-	yy = img->y + c * sin(angle1);
-	if ((int)x - (int)xx == -1)
-		return (img->notext);
-	else if ((int)x - (int)xx == 1)
-		return (img->sotext);
-	else if ((int)y - (int)yy == 1)
-		return (img->wetext);
-	else
-		return (img->eatext);
-}
-
-double ft_findpartofwall(char wall, double x, double y)
-{
-	if (wall == 'w')
-		return (x - (int)x);
-	else if (wall == 'e')
-		return (1 - x + (int)x);
-	else if (wall == 'n')
-		return (y - (int)y);
-	else
-		return (1 - y + (int)y); //s
 }
 
 t_data *ft_putcol(t_data *img)
@@ -125,22 +70,17 @@ t_data *ft_putcol(t_data *img)
 	double c;  
 	double x;
 	double y;
-	int xx;
-	int yy;
-	double *arrangle;
 	double angle1;
-	double angle2;
 	int i;
 	double pixelhiegt;
 	double partofwall;
 	t_xpm	*wall;
 
 	angle1 = img->mainangle - M_PI / 6;
-	angle2 = img->mainangle + M_PI / 6;
-	if (!(img->deep = malloc(sizeof(double) * (img->r1 / img->coef + 10))))
+	if (!(img->deep = malloc(sizeof(double) * (img->r1 / img->coef + 10)))) //fael;,e;kslvme;
 		exit(0);
 	i = 0;
-	while (angle1 < angle2)
+	while (angle1 < img->mainangle + M_PI / 6)
 	{
 		c = 0.001;
 		while (c)

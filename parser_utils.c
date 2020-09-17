@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:55:04 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/05 19:55:28 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/17 23:37:53 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,16 @@ int		ft_maxlenarr(char **arr)
 		i++;
 	}
 	return (tmp);
+}
+
+double	ft_angle(char c)
+{
+	if (c == 'N')
+		return (M_PI);
+	else if (c == 'E')
+		return (M_PI_2);
+	else if (c == 'W')
+		return (-M_PI_2);
+	else
+		return (0);
 }

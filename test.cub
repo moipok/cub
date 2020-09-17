@@ -3,9 +3,11 @@ NO ./text/purplestone.xpm
 
 R      1080         840
 WE ./text/greystone.xpm
-SO ./text/bluestone.xpm
-EA ./text/redbrick.xpm            
- C 139      , 69, 190
+SO    ./text/bluestone.xpm
+
+
+   EA ./text/redbrick.xpm            
+  C  139      , 69, 190
 S ./text/coin1.xpm
 F 75, 0 385, 130
 
