@@ -6,13 +6,13 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 18:10:09 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/17 23:37:59 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/20 23:54:04 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-double	ft_foundpixel(int jj,int end, double pixelhiegt, int r2)
+double	ft_foundpixel(int jj, double pixelhiegt, int r2)
 {
 	if (pixelhiegt > r2)
 		return(((pixelhiegt - r2)/2 + jj)/pixelhiegt);
@@ -22,19 +22,18 @@ double	ft_foundpixel(int jj,int end, double pixelhiegt, int r2)
 	}
 }
 
-t_xpm 	*ft_findwall(t_data *img, double c, double x, double y, double angle1)
+t_xpm 	*ft_findwall(t_data *img)
 {
-	double xx;
-	double yy;
+	double x;
+	double y;
 	
-	c = c - 0.001;
-	xx = img->x + c * cos(angle1);
-	yy = img->y + c * sin(angle1);
-	if ((int)x - (int)xx == -1)
+	x = img->mapx;
+	y = img->mapy;
+	if (img->map[(int)x][(int)y] != img->map[(int)(x + 0.002)][(int)y])
 		return (img->notext);
-	else if ((int)x - (int)xx == 1)
+	else if (img->map[(int)x][(int)y] != img->map[(int)(x - 0.002)][(int)y])
 		return (img->sotext);
-	else if ((int)y - (int)yy == 1)
+	else if (img->map[(int)x][(int)y] != img->map[(int)(x)][(int)(y - 0.002)])
 		return (img->wetext);
 	else
 		return (img->eatext);
@@ -49,5 +48,5 @@ double ft_findpartofwall(char wall, double x, double y)
 	else if (wall == 'n')
 		return (y - (int)y);
 	else
-		return (1 - y + (int)y); //s
+		return (1 - y + (int)y);
 }

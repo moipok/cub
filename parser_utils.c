@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:55:04 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/17 23:37:53 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/20 23:52:21 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int		ft_arrlen(char **arr)
 int		ft_maxlenarr(char **arr)
 {
 	int i;
-	int tmp;
+	size_t tmp;
 	
 	i = 0;
 	tmp = 0;
 	while (arr[i])
 	{
-		if (ft_strlen(arr[i]) > tmp)
+		if (ft_strlen(arr[i]) >= tmp)
 			tmp = ft_strlen(arr[i]);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:54 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/06 01:17:32 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/20 23:57:02 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,16 +101,16 @@ void	inittexture(t_data *data)
 
 int		main(int argc, char **argv)
 {
-	int i;
-	int j;
-    t_data  img;
+	t_data  img;
 
 	img.mlx = NULL;
 	img.win = NULL;
-	ft_parser(argc, argv, &img);
+	if (argc != 2)
+		return (0);
+	ft_parser(argv, &img);
 	img.mlx = mlx_init();
 	img.win = mlx_new_window(img.mlx, img.r1, img.r2, "test");
-	img.coef = 1;
+	img.coef = 2;
 	// img.img = mlx_new_image(img.mlx, img.r1, img.r2);
     // img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	//	ft_putwindow_3d(&img);

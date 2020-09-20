@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:24 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/17 23:20:14 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/20 23:56:01 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct		s_data
 	char			**map;
 	double			x;
 	double			y;
+	double			mapx;
+	double			mapy;	
 	double			mainangle;
 	int				r1;
 	int				r2;
@@ -95,7 +97,7 @@ typedef struct		s_data
 void		ft_putchar(char c);
 void		ft_putnbr(int n);
 void		ft_putstr(char *s);
-void		ft_parser(int argc, char **argv, t_data *img);
+void		ft_parser(char **argv, t_data *img);
 int			ft_arrlen(char **arr);
 t_data		*ft_w(t_data *img);
 t_data		*ft_s(t_data *img);
@@ -116,7 +118,7 @@ void		freemass(char **str);
 void		ft_lstfree(t_list **list);
 int			ft_arrlen(char **arr);
 int			ft_maxlenarr(char **arr);
-int			ft_checkmap(char **map, double x);
+int			ft_checkmap(char **map, t_data *img);
 void		ft_putsprite(t_data *img);
 double		correctangle(double angle);
 double		correctangle1(double angle, double mainangle);
@@ -125,19 +127,26 @@ char		*setwe(char **str, t_flags *flag);
 char		*setea(char **str, t_flags *flag);
 char		*setso(char **str, t_flags *flag);
 char		*setsprite(char **str, t_flags *flag);
-double		ft_foundpixel(int jj,int end, double pixelhiegt, int r2);
-t_xpm		*ft_findwall(t_data *img, double c, double x, double y, double angle1);
+double		ft_foundpixel(int jj, double pixelhiegt, int r2);
+t_xpm		*ft_findwall(t_data *img);
 double		ft_findpartofwall(char wall, double x, double y);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int			get_collor(t_xpm *data, int x, int y);
-int		check_elem(double x, double y, t_sprite *spr, double s);
-int		**ft_malloc_arrayint(int i, int j);
-void	freeintmass(int **arr, int i, int j);
-void	null_mas(t_sprite *spr, int i);
-void bubblesort(t_sprite *spr, int size);
-double	correctangle(double angle);
-double	correctangle1(double angle, double mainangle);
-int		get_t(int trgb);
-double	ft_angle(char c);
-
+int			check_elem(double x, double y, t_sprite *spr, double s);
+int			**ft_malloc_arrayint(int i, int j);
+void		freeintmass(int **arr, int i);
+void		null_mas(t_sprite *spr, int i);
+void		 bubblesort(t_sprite *spr, int size);
+double		correctangle(double angle);
+double		correctangle1(double angle, double mainangle);
+int			get_t(int trgb);
+double		ft_angle(char c);
+char		**ft_create_arr(t_list *list);
+char		**mallocbigarr(char **arr);
+int			checknwes(char a);
+int			checkunknownsymbol(char **map);
+int			checkunknown(char c);
+int			wallfounder(t_data *img, double c, double angle1);
+void		ft_putsprite(t_data *img);
+void		putsprite(t_data *img, int num);
 #endif

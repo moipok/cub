@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 20:00:44 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/17 23:37:55 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/20 23:55:53 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		**ft_malloc_arrayint(int i, int j)
 	return (arr);
 }
 
-void	freeintmass(int **arr, int i, int j)
+void	freeintmass(int **arr, int i)
 {
 	int k;
 
@@ -76,7 +76,6 @@ void	null_mas(t_sprite *spr, int i)
 void bubblesort(t_sprite *spr, int size)
 {
 	int i;
-	int j;
 	int flag;
 	t_sprite tmp;
 
