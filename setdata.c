@@ -6,13 +6,13 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:55:19 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/17 23:38:01 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 18:46:21 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_cleanflag(t_flags *flag)
+void		ft_cleanflag(t_flags *flag)
 {
 	flag->noflag = 0;
 	flag->soflag = 0;
@@ -25,14 +25,14 @@ void	ft_cleanflag(t_flags *flag)
 	flag->allflag = 0;
 }
 
-int fl_sumflag(t_flags *flag)
+int			fl_sumflag(t_flags *flag)
 {
 	return (flag->noflag + flag->soflag + flag->weflag + \
 	flag->eaflag + flag->spriteflag + flag->r1flag + \
 	flag->cellarflag + flag->floorflag);
 }
 
-int		setfc(char s, t_flags *flag, char **str)
+int			setfc(char s, t_flags *flag, char **str)
 {
 	if (s == 'F')
 		flag->floorflag = 1;
@@ -41,7 +41,7 @@ int		setfc(char s, t_flags *flag, char **str)
 	return (ft_setfloorcollor(str));
 }
 
-void	setdata(char **str, t_data *img, t_flags *flag)
+void		setdata(char **str, t_data *img, t_flags *flag)
 {
 	flag->allflag = fl_sumflag(flag);
 	if (str[0][0] == 'R' && !flag->r1flag)

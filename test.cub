@@ -9,7 +9,7 @@ SO    ./text/bluestone.xpm
    EA ./text/redbrick.xpm            
   C  139      , 69, 190
 S ./text/coin1.xpm
-F 75, 0 385, 130
+F 75, 5, 200
 
         111111111111111111111111
         1000000000110000002000001

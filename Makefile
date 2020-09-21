@@ -14,6 +14,7 @@ all: $(SRCO)
 	cd ./libft && make bonus && cd ..
 	#gcc -c -g $(SRCS)
 	gcc -Wall -Wextra -Werror $(SRCO) libmlx.dylib -g -framework OpenGL -framework Appkit libft/libft.a
+	make clean
 
 clean:
 	/bin/rm -f $(SRCO)

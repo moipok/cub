@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 20:00:44 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/20 23:55:53 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 16:01:41 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		check_elem(double x, double y, t_sprite *spr, double s)
 {
 	int i;
-	
+
 	i = 0;
 	if (sqrt(pow((x - (int)x - 0.5), 2) \
 	+ pow((y - (int)y - 0.5), 2)) > 0.3 && s < 1)
@@ -73,18 +73,18 @@ void	null_mas(t_sprite *spr, int i)
 	}
 }
 
-void bubblesort(t_sprite *spr, int size)
+void	bubblesort(t_sprite *spr, int size)
 {
-	int i;
-	int flag;
-	t_sprite tmp;
+	int			i;
+	int			flag;
+	t_sprite	tmp;
 
 	flag = 1;
 	while (flag > 0)
 	{
 		flag = 0;
 		i = -1;
-		while(++i < size - 1)
+		while (++i < size - 1)
 		{
 			if (spr[i].average < spr[i + 1].average)
 			{

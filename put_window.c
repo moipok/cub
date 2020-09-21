@@ -6,16 +6,16 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:55:14 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/20 23:55:09 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 16:17:22 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	putfloor(t_data *img, int  i, int jj)
+void	putfloor(t_data *img, int i, int jj)
 {
 	int col;
-	
+
 	col = -1;
 	while (col++ < img->coef)
 	{
@@ -24,28 +24,16 @@ void	putfloor(t_data *img, int  i, int jj)
 	}
 }
 
-void	set_start_end(int pixelhiegt, int r2, int *end, int *jj)
+void	ft_putline(t_data *img, int i, double pixelhiegt, double pofw)
 {
-	if (pixelhiegt > r2)
-	{
-		*jj = 1;
-		*end = r2 - 1;
-	}
-	else
-	{	
-		*jj = (r2 - pixelhiegt)/2;
-		*end = *jj + pixelhiegt;
-	}
-}
+	int		jj;
+	int		end;
+	int		collor;
+	int		col;
+	t_xpm	*wall;
 
-void ft_putline(t_data *img, int i, double pixelhiegt, t_xpm *wall, double pofw)
-{
-	int jj;
-	int end;
-	int collor;
-	int col;
-	
-	i = i*img->coef;
+	i = i * img->coef;
+	wall = ft_findwall(img);
 	if (i > img->r1)
 		return ;
 	set_start_end(pixelhiegt, img->r2, &end, &jj);
@@ -64,38 +52,28 @@ void ft_putline(t_data *img, int i, double pixelhiegt, t_xpm *wall, double pofw)
 	}
 }
 
-int		wallfounder(t_data *img, double c, double angle1)
-{
-	img->mapx = img->x + c * cos(angle1);
-	img->mapy = img->y + c * sin(angle1);
-	if (img->map[(int)img->mapx][(int)img->mapy] == '1' \
-		|| img->map[(int)img->mapx][(int)img->mapy] == '\0')
-		return (1);
-	return (0);
-}
-
 void	pixelcount(t_data *img, double c, int *i, double angle1)
 {
-	double pixelhiegt;
-	double partofwall;
+	double	pixelhiegt;
+	double	partofwall;
 	t_xpm	*wall;
 
-	pixelhiegt = img->r2  / (c * cos(img->mainangle - angle1));
+	pixelhiegt = img->r2 / (c * cos(img->mainangle - angle1));
 	wall = ft_findwall(img);
 	partofwall = ft_findpartofwall(wall->name, img->mapx, img->mapy);
-	ft_putline(img, *i, pixelhiegt, wall, partofwall);
+	ft_putline(img, *i, pixelhiegt, partofwall);
 	img->deep[*i] = c;
 	*i = *i + 1;
 }
 
-t_data *ft_putcol(t_data *img)
+t_data	*ft_putcol(t_data *img)
 {
-	double c;
-	double angle1;
-	int i;
+	double	c;
+	double	angle1;
+	int		i;
 
 	angle1 = img->mainangle - M_PI / 6;
-	if (!(img->deep = malloc(sizeof(double) * (img->r1 / img->coef + 2)))) //fael;,e;kslvme;
+	if (!(img->deep = malloc(sizeof(double) * (img->r1 / img->coef + 2))))
 		exit(0);
 	i = 0;
 	while (angle1 < img->mainangle + M_PI / 6)
@@ -116,7 +94,8 @@ void	ft_putwindow_3d(t_data *img)
 {
 	mlx_clear_window(img->mlx, img->win);
 	img->img = mlx_new_image(img->mlx, img->r1, img->r2);
-    img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,\
+	&img->line_length, &img->endian);
 	ft_putcol(img);
 	ft_putsprite(img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);

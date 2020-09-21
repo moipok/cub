@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:43 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 04:34:30 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 18:58:11 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,16 @@ int		ft_intlenn(int n)
 	return (len);
 }
 
-void	ft_setrgb(char **str, int *i, int *j, int *k, int *rgb)
+int		ft_setrgb(char **str, int *i, int *j, int *k)
 {
+	int rgb;
+
 	if (str[*i][*j] == ',')
 		*j = *j + 1;
 	else if (str[*i][*j] >= '0' && str[*i][*j] <= '9')
 	{
-		*rgb = ft_atoi(str[*i] + *j);
-		*j = *j + ft_intlenn(*rgb);
+		rgb = ft_atoi(str[*i] + *j);
+		*j = *j + ft_intlenn(rgb);
 		*k = *k + 1;
 	}
 	else
@@ -42,6 +44,9 @@ void	ft_setrgb(char **str, int *i, int *j, int *k, int *rgb)
 		printf("error\n");
 		exit(1);
 	}
+	if (rgb >= 0 && rgb <= 255)
+		return (rgb);
+	exit(0);
 }
 
 int		ft_setfloorcollor(char **str)
@@ -59,7 +64,7 @@ int		ft_setfloorcollor(char **str)
 	{
 		j = 0;
 		while (str[i][j] && k < 3)
-			ft_setrgb(str, &i, &j, &k, &rgb[k]);
+			rgb[k - 1] = ft_setrgb(str, &i, &j, &k);
 		i++;
 	}
 	return (0 << 24 | rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
