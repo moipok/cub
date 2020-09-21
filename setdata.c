@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:55:19 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 18:46:21 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 19:49:56 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,19 @@ void		setdata(char **str, t_data *img, t_flags *flag)
 		flag->r1flag = 1;
 	}
 	else if (str[0][0] == 'N')
-		img->no = setno(str, flag);
+		img->no = setno(str, flag, img);
 	else if (str[0][0] == 'S' && str[0][1] == 'O' && !flag->soflag)
-		img->so = setso(str, flag);
+		img->so = setso(str, flag, img);
 	else if (str[0][0] == 'S' && ft_strlen(str[0]) == 1 && !flag->spriteflag)
-		img->sprite = setsprite(str, flag);
+		img->sprite = setsprite(str, flag, img);
 	else if (str[0][0] == 'W')
-		img->we = setwe(str, flag);
+		img->we = setwe(str, flag, img);
 	else if (str[0][0] == 'E')
-		img->ea = setea(str, flag);
+		img->ea = setea(str, flag, img);
 	else if (str[0][0] == 'F' && !flag->floorflag)
 		img->floor = setfc('F', flag, str);
 	else if (str[0][0] == 'C' && !flag->cellarflag)
 		img->cellar = setfc('C', flag, str);
 	else
-		exit(1);
+		exit(error_setdata(flag, img));
 }

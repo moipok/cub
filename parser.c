@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:10 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 04:53:42 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 21:35:33 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**ft_bigarr(char **arr, t_data *img)
 	int		i;
 	int		j;
 
-	new = mallocbigarr(arr);
+	new = mallocbigarr(arr, img);
 	img->num = 0;
 	i = -1;
 	while (arr[++i])
@@ -42,8 +42,10 @@ void	ft_persetdata(t_data *img, t_flags *flag, char *line)
 {
 	char **tmp;
 
-	tmp = ft_split(line, ' ');
+	if (!(tmp = ft_split(line, ' ')))
+		exit(pritnerror(0));
 	setdata(tmp, img, flag);
+	img->flag = flag;
 	free(tmp);
 	free(line);
 }
@@ -57,7 +59,7 @@ void	ft_parser(char **argv, t_data *img)
 
 	list = NULL;
 	if (!(flag = malloc(sizeof(t_flags))))
-		exit(0);
+		exit(pritnerror(0));
 	ft_cleanflag(flag);
 	fd = open(argv[1], O_RDONLY);
 	while (get_next_line(fd, &line))
@@ -68,8 +70,7 @@ void	ft_parser(char **argv, t_data *img)
 			ft_persetdata(img, flag, line);
 	}
 	ft_lstadd_back(&list, ft_lstnew(line));
-	img->map = ft_bigarr(ft_create_arr(list), img);
-	if (ft_checkmap(img->map, img) == 0)
-		exit(1);
+	img->map = ft_bigarr(ft_create_arr(list, flag, img), img);
+	ft_checkmap(img->map, img);
 	free(flag);
 }

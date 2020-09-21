@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:24 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 18:54:05 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 21:28:32 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct		s_data
 	t_xpm			*spritetext;
 	t_sprite		*spr;
 	double			*deep;
+	t_flags			*flag;
 }					t_data;
 
 
@@ -122,11 +123,11 @@ int			ft_checkmap(char **map, t_data *img);
 void		ft_putsprite(t_data *img);
 double		correctangle(double angle);
 double		correctangle1(double angle, double mainangle);
-char		*setno(char **str, t_flags *flag);
-char		*setwe(char **str, t_flags *flag);
-char		*setea(char **str, t_flags *flag);
-char		*setso(char **str, t_flags *flag);
-char		*setsprite(char **str, t_flags *flag);
+char		*setno(char **str, t_flags *flag, t_data *img);
+char		*setwe(char **str, t_flags *flag, t_data *img);
+char		*setea(char **str, t_flags *flag, t_data *img);
+char		*setso(char **str, t_flags *flag, t_data *img);
+char		*setsprite(char **str, t_flags *flag, t_data *img);
 double		ft_foundpixel(int jj, double pixelhiegt, int r2);
 t_xpm		*ft_findwall(t_data *img);
 double		ft_findpartofwall(char wall, double x, double y);
@@ -141,8 +142,8 @@ double		correctangle(double angle);
 double		correctangle1(double angle, double mainangle);
 int			get_t(int trgb);
 double		ft_angle(char c);
-char		**ft_create_arr(t_list *list);
-char		**mallocbigarr(char **arr);
+char		**ft_create_arr(t_list *list, t_flags *flag, t_data *img);
+char		**mallocbigarr(char **arr, t_data *img);
 int			checknwes(char a);
 int			checkunknownsymbol(char **map);
 int			checkunknown(char c);
@@ -152,6 +153,16 @@ void		putsprite(t_data *img, int num);
 void		inittexture(t_data *data);
 void		inittexture2(t_data *data);
 void		inittexture3(t_data *data);
-int		wallfounder(t_data *img, double c, double angle1);
+int			wallfounder(t_data *img, double c, double angle1);
 void		set_start_end(int pixelhiegt, int r2, int *end, int *jj);
+void		freecharmass(char **str, int len);
+
+int			pritnerror(int error);
+int			error_malloc1(void);
+int			error_setdata(t_flags *flag, t_data *img);
+int			error_setdata0(t_flags *flag, t_data *img);
+int 		error_malloc2(t_data *img, char **arr);
+int 		error_malloc3(t_data *img, char **arr, char **new, int i);
+int			error_inside(t_flags *flag, t_data *img, char **arr, int i);
+int			cleanmap(t_data *img, int error);
 #endif

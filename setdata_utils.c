@@ -6,13 +6,13 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 17:04:17 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 18:48:05 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 19:49:27 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char		*setno(char **str, t_flags *flag)
+char		*setno(char **str, t_flags *flag, t_data *img)
 {
 	char *no;
 
@@ -22,11 +22,11 @@ char		*setno(char **str, t_flags *flag)
 		flag->noflag = 1;
 	}
 	else
-		exit(1);
+		exit(error_setdata(flag, img));
 	return (no);
 }
 
-char		*setwe(char **str, t_flags *flag)
+char		*setwe(char **str, t_flags *flag, t_data *img)
 {
 	char *we;
 
@@ -36,11 +36,11 @@ char		*setwe(char **str, t_flags *flag)
 		flag->weflag = 1;
 	}
 	else
-		exit(1);
+		exit(error_setdata(flag, img));
 	return (we);
 }
 
-char		*setea(char **str, t_flags *flag)
+char		*setea(char **str, t_flags *flag, t_data *img)
 {
 	char *ea;
 
@@ -50,11 +50,11 @@ char		*setea(char **str, t_flags *flag)
 		flag->eaflag = 1;
 	}
 	else
-		exit(1);
+		exit(error_setdata(flag, img));
 	return (ea);
 }
 
-char		*setso(char **str, t_flags *flag)
+char		*setso(char **str, t_flags *flag, t_data *img)
 {
 	char *so;
 
@@ -64,11 +64,11 @@ char		*setso(char **str, t_flags *flag)
 		flag->soflag = 1;
 	}
 	else
-		exit(1);
+		exit(error_setdata(flag, img));
 	return (so);
 }
 
-char		*setsprite(char **str, t_flags *flag)
+char		*setsprite(char **str, t_flags *flag, t_data *img)
 {
 	char *sprite;
 
@@ -78,6 +78,6 @@ char		*setsprite(char **str, t_flags *flag)
 		flag->spriteflag = 1;
 	}
 	else
-		exit(1);
+		exit(error_setdata(flag, img));
 	return (sprite);
 }

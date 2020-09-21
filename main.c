@@ -6,11 +6,24 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:54 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 04:48:38 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 21:21:15 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	freecharmass(char **str, int len)
+{
+	int i;
+
+	i = 0;
+	while (i < len)
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
 
 void	freemass(char **str)
 {

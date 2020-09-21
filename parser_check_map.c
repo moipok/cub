@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:02 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 04:55:22 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 21:34:57 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,30 +76,15 @@ int		ft_checkmap(char **map, t_data *img)
 
 	i = checktwohero(map, img);
 	if (i > 1)
-	{
-		printf("two hero\n");
-		exit(1);
-	}
+		exit(pritnerror(cleanmap(img, 3)));
 	else if (i == 0)
-	{
-		printf("nohero\n");
-		exit(1);
-	}
+		exit(pritnerror(cleanmap(img, 2)));
 	if (checkunknownsymbol(map) != 0)
-	{
-		printf("unknownsymbol\n");
-		exit(1);
-	}
+		exit(pritnerror(cleanmap(img, 4)));
 	if (checkline(map[0]) == 1 || \
 	checkline(map[ft_arrlen(map) - 1]) == 1)
-	{
-		printf("error line\n");
-		exit(1);
-	}
+		exit(pritnerror(cleanmap(img, 5)));
 	if (checkarr(map) == 1)
-	{
-		printf("error collon\n");
-		exit(1);
-	}
+		exit(pritnerror(cleanmap(img, 5)));
 	return (1);
 }
