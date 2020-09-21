@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 20:23:45 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 04:28:45 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 22:39:10 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	ft_putsprite(t_data *img)
 
 	angle1 = img->mainangle - M_PI / 6;
 	i = 0;
-	img->spr = malloc(sizeof(t_sprite) * img->num);
+	if (!(img->spr = malloc(sizeof(t_sprite) * img->num)))
+		exit(pritnerror(freexmp5(img)));
 	null_mas(img->spr, img->num);
 	while (angle1 < img->mainangle + M_PI / 6)
 	{

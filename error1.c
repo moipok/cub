@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 19:22:43 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 21:34:40 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 22:04:42 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int		pritnerror(int error)
 		ft_putstr_fd("UNCNOWN SYMBOL\n", 2);
 	if (error == 5)
 		ft_putstr_fd("ERROR MAP\n", 2);
+	if (error == 6)
+		ft_putstr_fd("ERROR INIT MLX\n", 2);
 	return (0);
 }
 
@@ -41,6 +43,7 @@ int		error_setdata(t_flags *flag, t_data *img)
 		free(img->so);
 	if (flag->spriteflag == 1)
 		free(img->sprite);
+	free(flag);
 	return (1);
 }
 
@@ -60,26 +63,4 @@ int		error_inside(t_flags *flag, t_data *img, char **arr, int i)
 		free(arr[k]);
 	free(arr);
 	return (0);
-}
-
-int error_malloc2(t_data *img, char **arr)
-{
-	error_setdata(img->flag, img);
-	freemass(arr);
-	return (0);
-}
-
-int error_malloc3(t_data *img, char **arr, char **new, int i)
-{
-	error_setdata(img->flag, img);
-	freemass(arr);
-	freecharmass(new, i);
-	return (0);
-}
-
-int		cleanmap(t_data *img, int error)
-{
-	freemass(img->map);
-	error_setdata(img->flag, img);
-	return (error);
 }

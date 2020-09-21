@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:55:14 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 16:17:22 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 22:40:16 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_data	*ft_putcol(t_data *img)
 
 	angle1 = img->mainangle - M_PI / 6;
 	if (!(img->deep = malloc(sizeof(double) * (img->r1 / img->coef + 2))))
-		exit(0);
+		exit(pritnerror(freexmp4(img)));
 	i = 0;
 	while (angle1 < img->mainangle + M_PI / 6)
 	{
@@ -93,9 +93,11 @@ t_data	*ft_putcol(t_data *img)
 void	ft_putwindow_3d(t_data *img)
 {
 	mlx_clear_window(img->mlx, img->win);
-	img->img = mlx_new_image(img->mlx, img->r1, img->r2);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,\
-	&img->line_length, &img->endian);
+	if (!(img->img = mlx_new_image(img->mlx, img->r1, img->r2)))
+		exit(pritnerror(freexmp4(img)));
+	if (!(img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,\
+	&img->line_length, &img->endian)))
+		exit(pritnerror(freexmp4(img)));
 	ft_putcol(img);
 	ft_putsprite(img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);

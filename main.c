@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:54 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 21:21:15 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 21:59:01 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,10 @@ int		main(int argc, char **argv)
 	if (argc != 2)
 		return (0);
 	ft_parser(argv, &img);
-	img.mlx = mlx_init();
-	img.win = mlx_new_window(img.mlx, img.r1, img.r2, "test");
+	if (!(img.mlx = mlx_init()))
+		exit(pritnerror(cleanmap(&img, 6)));
+	if (!(img.win = mlx_new_window(img.mlx, img.r1, img.r2, "test")))
+		exit(pritnerror(cleanmap(&img, 6)));;
 	img.coef = 2;
 	inittexture(&img);
 	ft_putwindow_3d(&img);

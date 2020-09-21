@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:24 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 21:28:32 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 22:40:05 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,4 +165,9 @@ int 		error_malloc2(t_data *img, char **arr);
 int 		error_malloc3(t_data *img, char **arr, char **new, int i);
 int			error_inside(t_flags *flag, t_data *img, char **arr, int i);
 int			cleanmap(t_data *img, int error);
+int			freexmp1(t_data *img);
+int			freexmp2(t_data *img);
+int			freexmp3(t_data *img);
+int			freexmp4(t_data *img);
+int			freexmp5(t_data *img);
 #endif
