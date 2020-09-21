@@ -6,20 +6,20 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 22:01:38 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 22:02:18 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/22 00:29:57 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int error_malloc2(t_data *img, char **arr)
+int		error_malloc2(t_data *img, char **arr)
 {
 	error_setdata(img->flag, img);
 	freemass(arr);
 	return (0);
 }
 
-int error_malloc3(t_data *img, char **arr, char **new, int i)
+int		error_malloc3(t_data *img, char **arr, char **new, int i)
 {
 	error_setdata(img->flag, img);
 	freemass(arr);

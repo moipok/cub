@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:54 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 21:59:01 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/22 00:29:03 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int		ft_docase(int keycode, t_data *img)
 	else if (keycode == 124)
 		img->mainangle -= 5 * M_PI / 360;
 	else
-		printf("%d\n", keycode);
+		;
 	img->mainangle = correctangle(img->mainangle);
 	ft_putwindow_3d(img);
 	return (0);
@@ -92,7 +92,7 @@ int		main(int argc, char **argv)
 	if (!(img.mlx = mlx_init()))
 		exit(pritnerror(cleanmap(&img, 6)));
 	if (!(img.win = mlx_new_window(img.mlx, img.r1, img.r2, "test")))
-		exit(pritnerror(cleanmap(&img, 6)));;
+		exit(pritnerror(cleanmap(&img, 6)));
 	img.coef = 2;
 	inittexture(&img);
 	ft_putwindow_3d(&img);

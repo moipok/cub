@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 04:44:34 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 22:40:10 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/22 00:28:51 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void		inittexture5(t_data *data)
 
 void		inittexture4(t_data *data)
 {
-	if (!(data->spritetext->mlx = mlx_xpm_file_to_image(data->mlx, data->sprite,\
+	if (!(data->spritetext->mlx = mlx_xpm_file_to_image(data->mlx, \
+	data->sprite,\
 	&data->spritetext->width, &data->spritetext->height)))
 		exit(pritnerror(freexmp4(data)));
 	if (!(data->spritetext->addr = mlx_get_data_addr(data->spritetext->mlx, \

@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:55:19 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 19:49:56 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/22 00:17:44 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ int			fl_sumflag(t_flags *flag)
 	flag->cellarflag + flag->floorflag);
 }
 
-int			setfc(char s, t_flags *flag, char **str)
+int			setfc(char s, t_flags *flag, char **str, t_data *img)
 {
 	if (s == 'F')
 		flag->floorflag = 1;
 	else if (s == 'C')
 		flag->cellarflag = 1;
-	return (ft_setfloorcollor(str));
+	return (ft_setfloorcollor(str, img));
 }
 
 void		setdata(char **str, t_data *img, t_flags *flag)
@@ -61,9 +61,9 @@ void		setdata(char **str, t_data *img, t_flags *flag)
 	else if (str[0][0] == 'E')
 		img->ea = setea(str, flag, img);
 	else if (str[0][0] == 'F' && !flag->floorflag)
-		img->floor = setfc('F', flag, str);
+		img->floor = setfc('F', flag, str, img);
 	else if (str[0][0] == 'C' && !flag->cellarflag)
-		img->cellar = setfc('C', flag, str);
+		img->cellar = setfc('C', flag, str, img);
 	else
 		exit(error_setdata(flag, img));
 }

@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 19:22:43 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 22:04:42 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/22 00:29:37 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int		pritnerror(int error)
 		ft_putstr_fd("ERROR MAP\n", 2);
 	if (error == 6)
 		ft_putstr_fd("ERROR INIT MLX\n", 2);
+	if (error == 10)
+		ft_putstr_fd("ERROR COLLOR\n", 2);
 	return (0);
 }
 
@@ -47,10 +49,16 @@ int		error_setdata(t_flags *flag, t_data *img)
 	return (1);
 }
 
+int		error_setdata1(t_flags *flag, t_data *img)
+{
+	error_setdata(flag, img);
+	return (10);
+}
+
 int		error_setdata0(t_flags *flag, t_data *img)
 {
 	error_setdata(flag, img);
-	return(0);
+	return (0);
 }
 
 int		error_inside(t_flags *flag, t_data *img, char **arr, int i)

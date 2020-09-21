@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:43 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 18:58:11 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/22 00:29:17 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,33 @@ int		ft_setrgb(char **str, int *i, int *j, int *k)
 		*k = *k + 1;
 	}
 	else
-	{
-		printf("error\n");
-		exit(1);
-	}
+		return (-1);
 	if (rgb >= 0 && rgb <= 255)
 		return (rgb);
-	exit(0);
+	return (-1);
 }
 
-int		ft_setfloorcollor(char **str)
+int		ft_setfloorcollor(char **str, t_data *img)
 {
 	int *rgb;
 	int i;
 	int j;
 	int k;
+	int collor;
 
 	if (!(rgb = malloc(sizeof(int) * 3)))
-		exit(1);
+		exit(pritnerror(error_setdata1(img->flag, img)));
 	i = 1;
 	k = 0;
 	while (str[i])
 	{
 		j = 0;
 		while (str[i][j] && k < 3)
-			rgb[k - 1] = ft_setrgb(str, &i, &j, &k);
+			if ((rgb[k - 1] = ft_setrgb(str, &i, &j, &k)) == -1)
+				exit(pritnerror(error_setdata1(img->flag, img)));
 		i++;
 	}
-	return (0 << 24 | rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
+	collor = (0 << 24 | rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
+	free(rgb);
+	return (collor);
 }
