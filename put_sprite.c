@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 19:58:40 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/20 23:47:19 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 00:15:39 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	putsprite(t_data *img, int num)
 	l = 0;
 	while (l < pixelhiegt)
 	{
-		if (i + l > 0 && img->spr[num].average < img->deep[(int)((img->r1 - l - i)/img->coef)] && i + l < img->r1)
+		if (i + l > 0 && img->spr[num].average < img->deep[(int)(\
+		(img->r1 - l - i)/img->coef)] && i + l < img->r1)
 		{
 			if (pixelhiegt > img->r2)
 				putlinesprite(img, i, l, pixelhiegt);

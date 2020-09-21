@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:24 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/20 23:56:01 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 04:46:39 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,4 +149,7 @@ int			checkunknown(char c);
 int			wallfounder(t_data *img, double c, double angle1);
 void		ft_putsprite(t_data *img);
 void		putsprite(t_data *img, int num);
+void		inittexture(t_data *data);
+void		inittexture2(t_data *data);
+void		inittexture3(t_data *data);
 #endif

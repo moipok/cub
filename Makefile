@@ -6,7 +6,7 @@ SRCS = main.c get_next_line.c get_next_line_utils.c \
 		parser_utils.c parser_check_map.c put_sprite.c \
 		setdata_utils.c put_window_utils.c my_pixel_put.c \
 		put_sprite_utils_1.c put_sprite_utils_2.c \
-		parser_utils_1.c ft_putsprite.c
+		parser_utils_1.c ft_putsprite.c inittexture.c
 
 SRCO = $(SRCS:.c=.o)
 

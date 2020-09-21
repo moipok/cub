@@ -6,13 +6,13 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:02 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/20 23:52:51 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 04:55:22 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int checkline(char *line)
+int		checkline(char *line)
 {
 	int i;
 
@@ -26,7 +26,7 @@ int checkline(char *line)
 	return (0);
 }
 
-int	checkarr(char **map)
+int		checkarr(char **map)
 {
 	int i;
 	int len;
@@ -70,25 +70,25 @@ int		checktwohero(char **map, t_data *img)
 	return (flag);
 }
 
-int 	ft_checkmap(char **map, t_data *img)
+int		ft_checkmap(char **map, t_data *img)
 {
 	int i;
-	
+
 	i = checktwohero(map, img);
 	if (i > 1)
 	{
 		printf("two hero\n");
-		exit (1);
+		exit(1);
 	}
 	else if (i == 0)
 	{
 		printf("nohero\n");
-		exit (1);
+		exit(1);
 	}
 	if (checkunknownsymbol(map) != 0)
 	{
 		printf("unknownsymbol\n");
-		exit (1);
+		exit(1);
 	}
 	if (checkline(map[0]) == 1 || \
 	checkline(map[ft_arrlen(map) - 1]) == 1)

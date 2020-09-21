@@ -6,12 +6,11 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 20:23:45 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/20 23:49:48 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/21 04:28:45 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void	presetsprite(int i, t_data *img)
 {
@@ -30,12 +29,16 @@ void	presetsprite(int i, t_data *img)
 void	somefun(t_data *img, int *i)
 {
 	if (img->map[(int)img->mapx][(int)img->mapy] == '2' && \
-	check_elem(img->mapx, img->mapy, img->spr, (sqrt(pow((img->x - (int)img->mapx + 0.5), 2) + pow((img->y - (int)img->mapy + 0.5), 2)))) == 0)
+	check_elem(img->mapx, img->mapy, img->spr, \
+	(sqrt(pow((img->x - (int)img->mapx + 0.5), 2) \
+	+ pow((img->y - (int)img->mapy + 0.5), 2)))) == 0)
 	{
 		img->spr[*i].x = (int)img->mapx + 0.5;
 		img->spr[*i].y = (int)img->mapy + 0.5;
-		img->spr[*i].average = (sqrt(pow((img->x - img->spr[*i].x), 2) + pow((img->y - img->spr[*i].y), 2)));
-		img->spr[*i].angle = correctangle1(atan2((img->spr[*i].y - img->y), (img->spr[*i].x - img->x)), \
+		img->spr[*i].average = (sqrt(pow((img->x - img->spr[*i].x), 2) \
+		+ pow((img->y - img->spr[*i].y), 2)));
+		img->spr[*i].angle = correctangle1(atan2((img->spr[*i].y - img->y),\
+		(img->spr[*i].x - img->x)), \
 		img->mainangle);
 		*i = *i + 1;
 	}
@@ -43,13 +46,13 @@ void	somefun(t_data *img, int *i)
 
 void	ft_putsprite(t_data *img)
 {
-	double angle1;
-	int i;
-	double c;
-	
+	double	angle1;
+	int		i;
+	double	c;
+
 	angle1 = img->mainangle - M_PI / 6;
 	i = 0;
-	img->spr = malloc(sizeof(t_sprite) * img->num); 
+	img->spr = malloc(sizeof(t_sprite) * img->num);
 	null_mas(img->spr, img->num);
 	while (angle1 < img->mainangle + M_PI / 6)
 	{
