@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:24 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/22 00:37:59 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/22 20:55:43 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "libft/libft.h"
 # include <fcntl.h>
 # include <math.h>
+# include <errno.h>
 
 typedef struct		s_xpm
 {
@@ -153,6 +154,7 @@ void				inittexture3(t_data *data);
 int					wallfounder(t_data *img, double c, double angle1);
 void				set_start_end(int pixelhiegt, int r2, int *end, int *jj);
 void				freecharmass(char **str, int len);
+int					ft_errnocheck(int er, char *av, t_flags *flag, int fd);
 
 int					pritnerror(int error);
 int					error_malloc1(void);
@@ -168,5 +170,6 @@ int					freexmp2(t_data *img);
 int					freexmp3(t_data *img);
 int					freexmp4(t_data *img);
 int					freexmp5(t_data *img);
+int					freexmp7(t_data *img);
 
 #endif

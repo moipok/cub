@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:10 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 21:58:46 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/22 20:48:06 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ void	ft_parser(char **argv, t_data *img)
 	if (!(flag = malloc(sizeof(t_flags))))
 		exit(pritnerror(0));
 	ft_cleanflag(flag);
-	fd = open(argv[1], O_RDONLY);
+	fd = open(argv[1], O_RDWR);
+	if (ft_errnocheck(errno, argv[1], flag, fd))
+		exit(0);
 	while (get_next_line(fd, &line))
 	{
 		if (fl_sumflag(flag) > 7 && line[0] != '\0')
@@ -70,6 +72,7 @@ void	ft_parser(char **argv, t_data *img)
 			ft_persetdata(img, flag, line);
 	}
 	ft_lstadd_back(&list, ft_lstnew(line));
+	close(fd);
 	img->map = ft_bigarr(ft_create_arr(list, flag, img), img);
 	ft_checkmap(img->map, img);
 }

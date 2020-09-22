@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 19:22:43 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/22 00:29:37 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/22 23:03:37 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,23 @@
 int		pritnerror(int error)
 {
 	if (error == 0)
-		ft_putstr_fd("ERROR MALLOC\n", 2);
+		ft_putstr_fd("ERROR\nMALLOC\n", 2);
 	if (error == 1)
-		ft_putstr_fd("ERROR SYMBOL IN FILE\n", 2);
+		ft_putstr_fd("ERROR\nSYMBOL IN FILE\n", 2);
 	if (error == 3)
-		ft_putstr_fd("TWO OR MORE HERO\n", 2);
+		ft_putstr_fd("ERROR\nTWO OR MORE HERO\n", 2);
 	if (error == 2)
-		ft_putstr_fd("NO HERO\n", 2);
+		ft_putstr_fd("ERROR\nNO HERO\n", 2);
 	if (error == 4)
-		ft_putstr_fd("UNCNOWN SYMBOL\n", 2);
+		ft_putstr_fd("ERROR\nUNCNOWN SYMBOL\n", 2);
 	if (error == 5)
-		ft_putstr_fd("ERROR MAP\n", 2);
+		ft_putstr_fd("ERROR\nMAP\n", 2);
 	if (error == 6)
-		ft_putstr_fd("ERROR INIT MLX\n", 2);
+		ft_putstr_fd("ERROR\nINIT MLX\n", 2);
 	if (error == 10)
-		ft_putstr_fd("ERROR COLLOR\n", 2);
+		ft_putstr_fd("ERROR\nCOLLOR\n", 2);
+	if (error == 12)
+		ft_putstr_fd("ERROR\nTEXURE NAME\n", 2);
 	return (0);
 }
 

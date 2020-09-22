@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:54 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/22 00:29:03 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/22 23:40:55 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,13 @@ int		ft_docase(int keycode, t_data *img)
 	return (0);
 }
 
+int		ft_close(int keycode, t_data *img)
+{
+	//mlx_destroy_window(img->mlx, img->win);
+	//ft_freeall(img);
+	exit(1);
+}
+
 int		main(int argc, char **argv)
 {
 	t_data	img;
@@ -93,9 +100,15 @@ int		main(int argc, char **argv)
 		exit(pritnerror(cleanmap(&img, 6)));
 	if (!(img.win = mlx_new_window(img.mlx, img.r1, img.r2, "test")))
 		exit(pritnerror(cleanmap(&img, 6)));
-	img.coef = 2;
+	img.coef = 1;
 	inittexture(&img);
+		if (!(img.img = mlx_new_image(img.mlx, img.r1, img.r2)))
+		exit(pritnerror(freexmp4(&img)));
+	if (!(img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,\
+	&img.line_length, &img.endian)))
+		exit(pritnerror(freexmp4(&img)));
 	ft_putwindow_3d(&img);
+	mlx_hook(img.win, 17, 1L << 0, ft_close, &img);
 	mlx_hook(img.win, 2, 1L << 0, ft_docase, &img);
 	mlx_loop(img.mlx);
 	return (0);

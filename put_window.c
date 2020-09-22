@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:55:14 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 22:40:16 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/22 23:43:06 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,13 @@ t_data	*ft_putcol(t_data *img)
 
 void	ft_putwindow_3d(t_data *img)
 {
-	mlx_clear_window(img->mlx, img->win);
-	if (!(img->img = mlx_new_image(img->mlx, img->r1, img->r2)))
-		exit(pritnerror(freexmp4(img)));
-	if (!(img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,\
-	&img->line_length, &img->endian)))
-		exit(pritnerror(freexmp4(img)));
+	// if (!(img->img = mlx_new_image(img->mlx, img->r1, img->r2)))
+	// 	exit(pritnerror(freexmp4(img)));
+	// if (!(img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,\
+	// &img->line_length, &img->endian)))
+	// 	exit(pritnerror(freexmp4(img)));
 	ft_putcol(img);
 	ft_putsprite(img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
+	mlx_do_sync(img->mlx);
 }

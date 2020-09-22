@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:55:19 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/22 00:17:44 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/22 23:55:05 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,27 @@ int			setfc(char s, t_flags *flag, char **str, t_data *img)
 	return (ft_setfloorcollor(str, img));
 }
 
+
+int		ft_setr(t_data *img, char **str)
+{
+	int sizex = 0;
+    int sizey = 0;
+
+	img->r1 = ft_atoi(str[1]);
+	img->r2 = ft_atoi(str[2]);
+	mlx_get_screen_size(img->mlx, &sizex, &sizey); 
+    if(img->r1 > sizex)
+        img->r1  = sizex; 
+    if(img->r2 > sizey) 
+        img->r2 = sizey;
+	return (1);
+}
 void		setdata(char **str, t_data *img, t_flags *flag)
 {
 	flag->allflag = fl_sumflag(flag);
 	if (str[0][0] == 'R' && !flag->r1flag)
 	{
-		img->r1 = ft_atoi(str[1]);
-		img->r2 = ft_atoi(str[2]);
-		flag->r1flag = 1;
+		flag->r1flag = ft_setr(img, str);
 	}
 	else if (str[0][0] == 'N')
 		img->no = setno(str, flag, img);
