@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:10 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/22 20:48:06 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/23 00:22:21 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_parser(char **argv, t_data *img)
 		exit(pritnerror(0));
 	ft_cleanflag(flag);
 	fd = open(argv[1], O_RDWR);
-	if (ft_errnocheck(errno, argv[1], flag, fd))
+	if (ft_errnocheck(errno, flag, fd))
 		exit(0);
 	while (get_next_line(fd, &line))
 	{

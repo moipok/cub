@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:55:14 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/22 23:43:06 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/24 01:57:18 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	putfloor(t_data *img, int i, int jj)
 	col = -1;
 	while (col++ < img->coef)
 	{
-		my_mlx_pixel_put(img, img->r1 - i - col, img->r2 - jj - 1, img->floor);
-		my_mlx_pixel_put(img, img->r1 - i - col, jj, img->cellar);
+		my_mlx_pixel_put(img, img->r1 - i - col, img->r2 - jj - 1, img->cellar);
+		my_mlx_pixel_put(img, img->r1 - i - col, jj, img->floor);
 	}
 }
 
@@ -80,8 +80,8 @@ t_data	*ft_putcol(t_data *img)
 	{
 		c = 0.001;
 		while (wallfounder(img, c, angle1) != 1)
-			c = c + 0.04;
-		c = c - 0.04;
+			c = c + 0.03;
+		c = c - 0.03;
 		while (wallfounder(img, c, angle1) != 1)
 			c = c + 0.002;
 		pixelcount(img, c, &i, angle1);
@@ -92,11 +92,6 @@ t_data	*ft_putcol(t_data *img)
 
 void	ft_putwindow_3d(t_data *img)
 {
-	// if (!(img->img = mlx_new_image(img->mlx, img->r1, img->r2)))
-	// 	exit(pritnerror(freexmp4(img)));
-	// if (!(img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,\
-	// &img->line_length, &img->endian)))
-	// 	exit(pritnerror(freexmp4(img)));
 	ft_putcol(img);
 	ft_putsprite(img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);

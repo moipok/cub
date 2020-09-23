@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 18:10:09 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 18:45:39 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/24 01:44:41 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ void		set_start_end(int pixelhiegt, int r2, int *end, int *jj)
 {
 	if (pixelhiegt > r2)
 	{
-		*jj = 1;
+		*jj = 0;
 		*end = r2 - 1;
 	}
 	else
 	{
-		*jj = (r2 - pixelhiegt) / 2;
+		*jj = (r2 - pixelhiegt) / 2 - 1;
 		*end = *jj + pixelhiegt;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 22:02:38 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/22 20:55:22 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/23 00:21:46 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		freexmp7(t_data *img)
 	return (12);
 }
 
-int		ft_errnocheck(int er, char *av, t_flags *flag, int fd)
+int		ft_errnocheck(int er, t_flags *flag, int fd)
 {
 	if (er == 13)
 	{
