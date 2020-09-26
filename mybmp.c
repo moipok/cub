@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 23:03:46 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/26 22:50:27 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/27 01:34:34 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,6 @@ void	bitmapheader(int file, t_data *img)
 	ft_setr1(s + 22, img->r2);
 	s[26] = (unsigned char)(1);
 	s[28] = (unsigned char)(24); //bit for pixel
-	i = 0;
-	while (i < 54)
-		printf("%2x ", s[i++]);
 	write(file, s, 54);
 }
 
@@ -77,9 +74,12 @@ void	bitmapmap(int file, t_data *img)
 				exit(0);
 			k++;
 		}
-		range = ft_count4(img->r1) + 1;
-		while (--range != 0)
-			write(file, 0, 1);
+		if (ft_count4(img->r1) != 4)
+		{
+			range = ft_count4(img->r1) + 1;
+			while (--range != 0)
+				write(file, 0, 1);
+		}
 		i--;
 	}
 }
