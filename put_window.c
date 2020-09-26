@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:55:14 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/24 01:57:18 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/26 22:49:11 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	putfloor(t_data *img, int i, int jj)
 	col = -1;
 	while (col++ < img->coef)
 	{
-		my_mlx_pixel_put(img, img->r1 - i - col, img->r2 - jj - 1, img->cellar);
 		my_mlx_pixel_put(img, img->r1 - i - col, jj, img->floor);
+		my_mlx_pixel_put(img, img->r1 - i - col, img->r2 - jj - 1, img->cellar);
 	}
 }
 

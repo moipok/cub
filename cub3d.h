@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:24 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/24 23:10:24 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/26 22:38:39 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,12 @@ void				freecharmass(char **str, int len);
 void				freemass(char **str);
 void				ft_freeall(t_data *img);
 int					my_bmp(t_data *img, int argc, char **argv);
-
+void				ft_putscreen(t_data *img);
+int					write_collor(t_data *data, int x, int y, int file);
+void				pixelcount(t_data *img, double c, int *i, double angle1);
+void				ft_putline(t_data *img, int i, double pixelhiegt, double pofw);
+void				putfloor(t_data *img, int i, int jj);
+t_data				*ft_putcol(t_data *img);
 int					pritnerror(int error);
 int					error_malloc1(void);
 int					error_setdata(t_flags *flag, t_data *img);
