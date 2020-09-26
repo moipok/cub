@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 20:38:06 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/21 21:21:16 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/24 18:19:45 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ char	**ft_create_arr(t_list *list, t_flags *flag, t_data *img)
 
 	tmp = list;
 	i = 0;
-	if (!(arr = malloc((sizeof(char*)) * (ft_lstsize(list) + 1))))
+	if (!(arr = ft_calloc((sizeof(char*)), (ft_lstsize(list) + 1))))
 		exit(pritnerror(error_setdata0(flag, img)));
 	while (list)
 	{
-		if (!(arr[i] = malloc((sizeof(char)) * \
+		if (!(arr[i] = ft_calloc((sizeof(char)), \
 		(ft_strlenn(list->content) + 1))))
 			exit(pritnerror(error_inside(flag, img, arr, i)));
 		arr[i] = list->content;

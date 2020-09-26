@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:54 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/24 02:31:15 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/24 23:08:21 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int		main(int argc, char **argv)
 
 	img.mlx = NULL;
 	img.win = NULL;
-	if (argc != 2)
-		return (0);
 	ft_parser(argv, &img);
+	if (argc != 2)
+		return (my_bmp(&img, argc, argv));
 	if (!(img.mlx = mlx_init()))
 		exit(pritnerror(cleanmap(&img, 6)));
 	if (!(img.win = mlx_new_window(img.mlx, img.r1, img.r2, "test")))

@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:55:19 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/24 02:01:39 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/24 17:46:29 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			setfc(char s, t_flags *flag, char **str, t_data *img)
 	return (ft_setfloorcollor(str, img));
 }
 
-int			ft_setr(t_data *img, char **str)
+int			ft_setr(t_data *img, t_flags *flag, char **str)
 {
 	int sizex;
 	int sizey;
@@ -50,8 +50,12 @@ int			ft_setr(t_data *img, char **str)
 	sizey = 0;
 	img->r1 = ft_atoi(str[1]);
 	img->r2 = ft_atoi(str[2]);
-	if (img->r1 == -1 || img->r2 == -1)
-		exit(0);
+	if (img->r1 < 0 || img->r2 < 0)
+		exit(pritnerror(error_setdatar1(flag, img)));
+	if (img->r1 < 176)
+		img->r1 = 176;
+	if (img->r2 < 144)
+		img->r2 = 144;
 	mlx_get_screen_size(img->mlx, &sizex, &sizey);
 	if (img->r1 > sizex)
 		img->r1 = sizex;
@@ -64,7 +68,7 @@ void		setdata(char **str, t_data *img, t_flags *flag)
 {
 	flag->allflag = fl_sumflag(flag);
 	if (str[0][0] == 'R' && !flag->r1flag)
-		flag->r1flag = ft_setr(img, str);
+		flag->r1flag = ft_setr(img, flag, str);
 	else if (str[0][0] == 'N')
 		img->no = setno(str, flag, img);
 	else if (str[0][0] == 'S' && str[0][1] == 'O' && !flag->soflag)

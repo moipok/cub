@@ -1,7 +1,7 @@
 
 NO ./text/purplestone.xpm
 
-R      1280       744
+R      44       44
 WE ./text/greystone.xpm
 SO    ./text/bluestone.xpm
 

@@ -8,7 +8,7 @@ SRCS = main.c get_next_line.c get_next_line_utils.c \
 		put_sprite_utils_1.c put_sprite_utils_2.c \
 		parser_utils_1.c ft_putsprite.c inittexture.c \
 		error1.c error2.c error3.c ft_setfloorcollor_utils.c \
-		somefree.c
+		somefree.c mybmp.c
 
 #SRCO = $(SRCS:.c=.o)
 

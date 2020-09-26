@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/31 16:18:30 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/17 23:37:48 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/24 19:51:29 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t		ft_strlenn(const char *s)
 	size_t	i;
 
 	i = 0;
-	while (s && s[i] != 0)
+	while (s[i] != '\0' && s != NULL)
 		i++;
 	return (i);
 }

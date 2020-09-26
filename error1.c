@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 19:22:43 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/22 23:03:37 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/24 17:21:33 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int		pritnerror(int error)
 		ft_putstr_fd("ERROR\nINIT MLX\n", 2);
 	if (error == 10)
 		ft_putstr_fd("ERROR\nCOLLOR\n", 2);
+	if (error == 11)
+		ft_putstr_fd("ERROR\nRESOLUTION\n", 2);
 	if (error == 12)
 		ft_putstr_fd("ERROR\nTEXURE NAME\n", 2);
 	return (0);
@@ -49,6 +51,12 @@ int		error_setdata(t_flags *flag, t_data *img)
 		free(img->sprite);
 	free(flag);
 	return (1);
+}
+
+int		error_setdatar1(t_flags *flag, t_data *img)
+{
+	error_setdata(flag, img);
+	return (11);
 }
 
 int		error_setdata1(t_flags *flag, t_data *img)
