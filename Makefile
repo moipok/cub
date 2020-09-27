@@ -15,7 +15,7 @@ SRCS = main.c get_next_line.c get_next_line_utils.c \
 all: $(SRCS)
 	cd ./libft && make bonus && cd ..
 	#gcc -c -g $(SRCS)
-	gcc -Wall -Wextra -Werror $(SRCS) libmlx.dylib -g -framework OpenGL -framework Appkit libft/libft.a
+	gcc -Wall -Wextra -Werror $(SRCS) -o $(NAME) libmlx.dylib -g -framework OpenGL -framework Appkit libft/libft.a
 
 clean:
 	/bin/rm -f $(SRCO)

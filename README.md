@@ -3,4 +3,7 @@
 
 запуск
 make
-./a.out test.cub 
+./cub3d test.cub 
+or 
+./cub3d test.cub --save
+to make screen

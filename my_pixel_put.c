@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 18:13:51 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/26 21:27:00 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/27 07:51:56 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 }
 
 int		get_collor(t_xpm *data, int x, int y)
+{
+	char	*dst;
+	int		collor;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	collor = *(int*)dst;
+	return (collor);
+}
+
+int		get_collordata(t_data *data, int x, int y)
 {
 	char	*dst;
 	int		collor;

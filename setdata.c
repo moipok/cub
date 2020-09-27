@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:55:19 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/24 17:46:29 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/27 08:18:04 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,9 @@ int			ft_setr(t_data *img, t_flags *flag, char **str)
 void		setdata(char **str, t_data *img, t_flags *flag)
 {
 	flag->allflag = fl_sumflag(flag);
-	if (str[0][0] == 'R' && !flag->r1flag)
+	if (str[0] == NULL)
+		;
+	else if (str[0][0] == 'R' && !flag->r1flag)
 		flag->r1flag = ft_setr(img, flag, str);
 	else if (str[0][0] == 'N')
 		img->no = setno(str, flag, img);
@@ -84,5 +86,5 @@ void		setdata(char **str, t_data *img, t_flags *flag)
 	else if (str[0][0] == 'C' && !flag->cellarflag)
 		img->cellar = setfc('C', flag, str, img);
 	else
-		exit(error_setdata(flag, img));
+		exit(pritnerror(error_setdatar777(flag, img)));
 }

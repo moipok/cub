@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 19:36:37 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/26 22:48:08 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/27 07:53:41 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ void	ft_putscreen(t_data *img)
 		exit(pritnerror(freexmp4(img)));
 	ft_putcol(img);
 	ft_putsprite(img);
+	ft_putonelinepixel(img);
 }

@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 19:22:43 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/24 17:21:33 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/27 08:20:01 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ int		pritnerror(int error)
 		ft_putstr_fd("ERROR\nRESOLUTION\n", 2);
 	if (error == 12)
 		ft_putstr_fd("ERROR\nTEXURE NAME\n", 2);
+	if (error == 404)
+		ft_putstr_fd("ERROR\nSCREEN FILE\n", 2);
+	if (error == 403)
+		ft_putstr_fd("ERROR\nBITMAP WRITE\n", 2);
+	if (error == 777)
+		ft_putstr_fd("ERROR\nUNKNOWN SIMBOL\nOR\n\
+		DATA IS NO FULL\n", 2);
 	return (0);
 }
 
@@ -51,6 +58,12 @@ int		error_setdata(t_flags *flag, t_data *img)
 		free(img->sprite);
 	free(flag);
 	return (1);
+}
+
+int		error_setdatar777(t_flags *flag, t_data *img)
+{
+	error_setdata(flag, img);
+	return (777);
 }
 
 int		error_setdatar1(t_flags *flag, t_data *img)

@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:55:14 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/26 22:49:11 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/27 07:52:44 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,23 @@ t_data	*ft_putcol(t_data *img)
 	return (img);
 }
 
+void	ft_putonelinepixel(t_data *img)
+{
+	int i;
+
+	i = 0;
+	while (i < img->r1)
+	{
+		my_mlx_pixel_put(img, i, 0, get_collordata(img, i, 1));
+		i++;
+	}
+}
+
 void	ft_putwindow_3d(t_data *img)
 {
 	ft_putcol(img);
 	ft_putsprite(img);
+	ft_putonelinepixel(img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 	mlx_do_sync(img->mlx);
 }

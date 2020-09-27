@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 23:03:46 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/27 01:34:34 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/27 02:02:33 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_setr1(unsigned char *s, int r)
 	s[3] = (unsigned char)(r >> 24);	
 }
 
-void	bitmapheader(int file, t_data *img)
+int		bitmapheader(int file, t_data *img)
 {
 	unsigned char s[54];
 	int i;
@@ -55,10 +55,12 @@ void	bitmapheader(int file, t_data *img)
 	ft_setr1(s + 22, img->r2);
 	s[26] = (unsigned char)(1);
 	s[28] = (unsigned char)(24); //bit for pixel
-	write(file, s, 54);
+	if (write(file, s, 54) != 54)
+		return (0);
+	return (1);
 }
 
-void	bitmapmap(int file, t_data *img)
+int		bitmapmap(int file, t_data *img)
 {
 	int i;
 	int k;
@@ -71,37 +73,43 @@ void	bitmapmap(int file, t_data *img)
 		while (k < img->r1)
 		{
 			if (write_collor(img, k, i - 1, file) < 0)
-				exit(0);
+				return (0);
 			k++;
 		}
 		if (ft_count4(img->r1) != 4)
 		{
 			range = ft_count4(img->r1) + 1;
 			while (--range != 0)
-				write(file, 0, 1);
+				if (write(file, 0, 1) != 1)
+					return (0);
 		}
 		i--;
 	}
+	return (1);
 }
 
 int		my_bmp(t_data *img, int argc, char **argv)
 {
 	int	file;
 
-	if (argc != 3)
-		return (0);
-	else if (ft_strncmp(argv[2], "--save", 7) == 0)
+	if (ft_strncmp(argv[2], "--save", 7) == 0 && argc == 3)
 	{
 		ft_putscreen(img);
 		if ((file = open("screenshot.bmp", O_WRONLY | O_CREAT \
 									| O_TRUNC | O_APPEND)) < 0)
-			return (0);
-		bitmapheader(file, img);
-		bitmapmap(file, img);
+			exit(pritnerror(cleanmap(img, 404)));
+		if (bitmapheader(file, img) == 0)
+		{
+			close(file);
+			exit(pritnerror(cleanmap(img, 403)));
+		}
+		if (bitmapmap(file, img) == 0)
+		{
+			close(file);
+			exit(pritnerror(cleanmap(img, 403)));
+		}
 		close(file);
-		return (0);
+		return (1);
 	}
-	else
-		return (0);
-	
+	return (0);
 }

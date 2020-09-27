@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:24 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/26 22:38:39 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/27 08:16:30 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,8 @@ void				freecharmass(char **str, int len);
 int					ft_errnocheck(int er, t_flags *flag, int fd);
 int					ft_intlenn(int n);
 int					countlenarr(char **arr);
+int					get_collordata(t_data *data, int x, int y);
+void				ft_putonelinepixel(t_data *img);
 char				*ft_dostr(char **arr);
 int					ft_checksymbols(char *str);
 void				freecharmass(char **str, int len);
@@ -177,6 +179,7 @@ int					error_setdata(t_flags *flag, t_data *img);
 int					error_setdata0(t_flags *flag, t_data *img);
 int					error_setdata1(t_flags *flag, t_data *img);
 int					error_setdatar1(t_flags *flag, t_data *img);
+int					error_setdatar777(t_flags *flag, t_data *img);
 int					error_malloc2(t_data *img, char **arr);
 int					error_malloc3(t_data *img, char **arr, char **new, int i);
 int					error_inside(t_flags *flag, t_data *img, char **arr, int i);
