@@ -6,55 +6,29 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 23:03:46 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/27 02:02:33 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/27 23:48:52 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_count4(int r)
-{
-	return (4 - (r * 3) % 4);
-}
-
-void	ft_setsize(unsigned char *s, t_data *img)
-{
-	int size;
-	int col;
-
-	col = (img->r1 * 3) + ft_count4(img->r1);
-	size = 54 + (col * img->r2);
-	s[0] = (unsigned char)(size);
-	s[1] = (unsigned char)(size >> 8);
-	s[2] = (unsigned char)(size >> 16);
-	s[3] = (unsigned char)(size >> 24);
-}
-
-void	ft_setr1(unsigned char *s, int r)
-{
-	s[0] = (unsigned char)(r);
-	s[1] = (unsigned char)(r >> 8);
-	s[2] = (unsigned char)(r >> 16);
-	s[3] = (unsigned char)(r >> 24);	
-}
-
 int		bitmapheader(int file, t_data *img)
 {
-	unsigned char s[54];
-	int i;
+	unsigned char	s[54];
+	int				i;
 
 	i = -1;
 	while (++i < 54)
 		s[i] = (unsigned char)(0);
 	s[0] = (unsigned char)('B');
 	s[1] = (unsigned char)('M');
-	ft_setsize(s + 2, img); //размер
-	s[10] = (unsigned char)('6'); //смещение (36)
-	s[14] = (unsigned char)(40); //что то 28
-	ft_setr1(s + 18, img->r1); //ширина и длина
+	ft_setsize(s + 2, img);
+	s[10] = (unsigned char)('6');
+	s[14] = (unsigned char)(40);
+	ft_setr1(s + 18, img->r1);
 	ft_setr1(s + 22, img->r2);
 	s[26] = (unsigned char)(1);
-	s[28] = (unsigned char)(24); //bit for pixel
+	s[28] = (unsigned char)(24);
 	if (write(file, s, 54) != 54)
 		return (0);
 	return (1);

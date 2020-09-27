@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 19:54:24 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/27 08:16:30 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/27 23:48:42 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,5 +190,8 @@ int					freexmp3(t_data *img);
 int					freexmp4(t_data *img);
 int					freexmp5(t_data *img);
 int					freexmp7(t_data *img);
+int					ft_count4(int r);
+void				ft_setsize(unsigned char *s, t_data *img);
+void				ft_setr1(unsigned char *s, int r);
 
 #endif

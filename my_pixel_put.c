@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 18:13:51 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/27 07:51:56 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/27 23:56:45 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		get_collordata(t_data *data, int x, int y)
 	return (collor);
 }
 
-int			write_collor(t_data *data, int x, int y, int file)
+int		write_collor(t_data *data, int x, int y, int file)
 {
 	char	*dst;
 	int		collor;

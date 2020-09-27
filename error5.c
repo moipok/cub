@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_text.c                                         :+:      :+:    :+:   */
+/*   error5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/05 19:55:09 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/27 23:52:06 by fbarbera         ###   ########.fr       */
+/*   Created: 2020/09/27 23:53:16 by fbarbera          #+#    #+#             */
+/*   Updated: 2020/09/27 23:53:42 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_putonelinepixel(t_data *img)
+int		error_setdatar777(t_flags *flag, t_data *img)
 {
-	int i;
+	error_setdata(flag, img);
+	return (777);
+}
 
-	i = 0;
-	while (i < img->r1)
-	{
-		my_mlx_pixel_put(img, i, 0, get_collordata(img, i, 1));
-		i++;
-	}
+int		error_setdatar1(t_flags *flag, t_data *img)
+{
+	error_setdata(flag, img);
+	return (11);
+}
+
+int		error_setdata1(t_flags *flag, t_data *img)
+{
+	error_setdata(flag, img);
+	return (10);
+}
+
+int		error_setdata0(t_flags *flag, t_data *img)
+{
+	error_setdata(flag, img);
+	return (0);
 }

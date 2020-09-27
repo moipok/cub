@@ -6,7 +6,7 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 19:36:37 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/27 07:53:41 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/27 23:49:40 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_putfloor1(t_data *img)
 	while (i < img->r1)
 	{
 		j = 0;
-		while (++j < img->r2/2)
+		while (++j < img->r2 / 2)
 			my_mlx_pixel_put(img, i, j, img->floor);
 		while (++j < img->r2)
 			my_mlx_pixel_put(img, i, j, img->cellar);

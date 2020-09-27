@@ -6,11 +6,25 @@
 /*   By: fbarbera <login@student.21-school.ru>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 19:22:43 by fbarbera          #+#    #+#             */
-/*   Updated: 2020/09/27 08:20:01 by fbarbera         ###   ########.fr       */
+/*   Updated: 2020/09/27 23:55:58 by fbarbera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int		pritnerror1(int error)
+{
+	if (error == 12)
+		ft_putstr_fd("ERROR\nTEXURE NAME\n", 2);
+	if (error == 404)
+		ft_putstr_fd("ERROR\nSCREEN FILE\n", 2);
+	if (error == 403)
+		ft_putstr_fd("ERROR\nBITMAP WRITE\n", 2);
+	if (error == 777)
+		ft_putstr_fd("ERROR\nUNKNOWN SIMBOL\nOR\n\
+		DATA IS NO FULL\n", 2);
+	return (0);
+}
 
 int		pritnerror(int error)
 {
@@ -32,15 +46,8 @@ int		pritnerror(int error)
 		ft_putstr_fd("ERROR\nCOLLOR\n", 2);
 	if (error == 11)
 		ft_putstr_fd("ERROR\nRESOLUTION\n", 2);
-	if (error == 12)
-		ft_putstr_fd("ERROR\nTEXURE NAME\n", 2);
-	if (error == 404)
-		ft_putstr_fd("ERROR\nSCREEN FILE\n", 2);
-	if (error == 403)
-		ft_putstr_fd("ERROR\nBITMAP WRITE\n", 2);
-	if (error == 777)
-		ft_putstr_fd("ERROR\nUNKNOWN SIMBOL\nOR\n\
-		DATA IS NO FULL\n", 2);
+	if (pritnerror1(error))
+		return (0);
 	return (0);
 }
 
@@ -58,30 +65,6 @@ int		error_setdata(t_flags *flag, t_data *img)
 		free(img->sprite);
 	free(flag);
 	return (1);
-}
-
-int		error_setdatar777(t_flags *flag, t_data *img)
-{
-	error_setdata(flag, img);
-	return (777);
-}
-
-int		error_setdatar1(t_flags *flag, t_data *img)
-{
-	error_setdata(flag, img);
-	return (11);
-}
-
-int		error_setdata1(t_flags *flag, t_data *img)
-{
-	error_setdata(flag, img);
-	return (10);
-}
-
-int		error_setdata0(t_flags *flag, t_data *img)
-{
-	error_setdata(flag, img);
-	return (0);
 }
 
 int		error_inside(t_flags *flag, t_data *img, char **arr, int i)
